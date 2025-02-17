@@ -1,5 +1,3 @@
-version: '3'
-
 volumes:
   bundle:
     driver: local
@@ -15,7 +13,8 @@ services:
     environment:
       PGPASSWORD: uaI7m2kmWd949DMv4dCh
     build: .
-    entrypoint: [setup/entry]
+    platform: linux/arm64
+    entrypoint: [ setup/entry ]
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
     volumes:
       - .:/refugerestrooms
