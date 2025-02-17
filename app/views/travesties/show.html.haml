@@ -1,0 +1,38 @@
+.row.headroom
+  .col-xs-12
+    .listItem.showPageItem{"data-id" => @travesty.id}
+      = render partial: 'travesties/travesty', locals: { travesty: @travesty }
+
+.showPageContent
+  .row
+    .col-xs-12
+      .btn-group{role: "group"}
+        = link_to travesty_path(travesty: { upvote: true }),
+                    method: 'put' do
+          %button.btn.btn-lg.btn-success
+            %i.fa.fa-thumbs-up
+            = t('.thumbs-up-button-label')
+
+        = link_to travesty_path(travesty: { downvote: true }),
+                    method: 'put' do
+          %button.btn.btn-lg.btn-danger
+            %i.fa.fa-thumbs-down
+            = t('.thumbs-down-button-label')
+  .row.headroom
+    .col-xs-12
+
+      %p
+        %strong #{t('travesty.directions')}:
+        = @travesty.directions
+      %p
+        %strong #{t('travesty.comments')}:
+        = @travesty.comment
+      %p= link_to t('travesty.edit.editlisting'), new_travesty_path(id: @travesty.id, travesty_name: @travesty.name, edit_id: @travesty.edit_id)
+  .row
+    .col-xs-12
+      #map
+        %div#mapArea{ data: { latitude: @travesty.latitude, longitude: @travesty.longitude } }
+      %hr
+  .row
+    .col-xs-12
+      = render partial: 'layouts/disqus_tag', locals: { identifier: "travesty-#{@travesty.id}", title: @travesty.name, url: request.original_url }

@@ -1,7 +1,7 @@
 en:
   contacts:
     new:
-      request-edit-for-restroom: 'Request Edit for %{restroom_name} Restroom'
+      request-edit-for-travesty: 'Request Edit for %{travesty_name} Travesty'
       contact-title: 'Contact'
       leave-this-field-blank: 'Leave this field blank!'
     submitted:

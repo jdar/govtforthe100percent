@@ -1,7 +1,7 @@
 es:
   contacts:
     new:
-      request-edit-for-restroom: 'Solicitar Edición para el baño de %{restroom_name}'
+      request-edit-for-travesty: 'Solicitar Edición para el baño de %{travesty_name}'
       contact-title: 'Contacto'
       leave-this-field-blank: 'Dejar este campo en blanco.'
     submitted:

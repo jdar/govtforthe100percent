@@ -1,0 +1,45 @@
+.row
+  .col-xs-12.headroom
+    #filters.clearfix
+      .btn-group{:data => {:toggle => "buttons"}}
+        %button#ada_filter.filter.btn.btn-light-purple.linkbutton{:title => t("travesty.accessible"), :class => ("active" if @filters.keys.include?('accessible'))}
+          %input{:type => "checkbox", :checked => @filters.keys.include?('accessible')}
+          %i.fa.fa-wheelchair
+        %button#unisex_filter.filter.btn-light-purple.btn.linkbutton{:title => t("travesty.type.unisex"), :class => ("active" if @filters.keys.include?('unisex'))}
+          %input{:type => "checkbox", :checked => @filters.keys.include?('unisex')}
+          %i.fa.fa-transgender-alt
+        %button#changing_table_filter.filter.btn-light-purple.btn.linkbutton{:title => t("travesty.changing_table"), :class => ("active" if @filters.keys.include?('changing_table'))}
+          %input{:type => "checkbox", :checked => @filters.keys.include?('changing_table')}
+          %i.fa.fa-child
+
+      - view_label = @view == 'map' ? 'List View' : 'Map View'
+      - view_toggle = @view == 'map' ? {view: 'list'} : {view: 'map'}
+      = link_to view_label, travesties_path(request.query_parameters.merge(view_toggle)), class: 'map-toggle-btn linkbutton btn pull-right btn-lg btn-light-purple'
+
+.travesties-index-content
+  .row
+    .col-sm-12.headroom
+      #results
+        = content_tag 'div', id: 'mapContainer', data: { latitude: params[:lat], longitude: params[:long] } do
+          #mapArea
+  .row
+    .col-sm-12.headroom
+      %ul{:class => "travesties-list", :id => "list"}
+        = render @travesties
+        != pagy_nav @pagy
+/ .row
+/   .col-xs-12.headroom
+/     .travesties-index-content
+/       = content_tag 'div', id: 'map-container', data: { latitude: params[:lat], longitude: params[:long] } do
+/         #map-content
+/       .travesties-list
+/         = render @travesties
+/         != pagy_nav @pagy
+
+
+/ #results.headroom
+/   = content_tag 'div', id: 'mapContainer', data: { latitude: params[:lat], longitude: params[:long] } do
+/     #mapArea
+/   #list.travesties-list
+/     = render @travesties
+/     != pagy_nav @pagy

@@ -6,10 +6,10 @@ require('jquery')
 import 'bootstrap/dist/js/bootstrap'
 
 // Views
-import './views/restrooms/index'
-import './views/restrooms/new'
-import './views/restrooms/restrooms'
-import './views/restrooms/search'
+import './views/travesties/index'
+import './views/travesties/new'
+import './views/travesties/travesties'
+import './views/travesties/search'
 import ApiDocs from './views/api/docs'
 
 document.addEventListener('DOMContentLoaded', function() {

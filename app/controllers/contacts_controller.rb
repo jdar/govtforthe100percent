@@ -2,7 +2,7 @@ require_relative '../helpers/recaptcha_helper'
 
 class ContactsController < ApplicationController
   def new
-    @contact = Contact.new(restroom_id: params['restroom_id'], restroom_name: params['restroom_name'])
+    @contact = Contact.new(travesty_id: params['travesty_id'], travesty_name: params['travesty_name'])
   end
 
   # rubocop:disable Metrics/AbcSize

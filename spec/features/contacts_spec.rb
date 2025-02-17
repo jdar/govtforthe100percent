@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe 'the contact process' do
-  it 'shows a generic contact when contact is not from restroom form' do
-    restroom = create(:restroom, name: "Mission Creek Cafe")
+  it 'shows a generic contact when contact is not from travesty form' do
+    travesty = create(:travesty, name: "Mission Creek Cafe")
 
-    visit restroom_path restroom
+    visit travesty_path travesty
     click_link 'Contact'
 
     expect(page).not_to have_content('Mission Creek Cafe')

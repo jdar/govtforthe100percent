@@ -2,13 +2,13 @@ fil:
   layouts:
     footer:
       aria-labels:
-        github: 'Refuge Restrooms sa GitHub'
-        twitter: 'Refuge Restrooms sa twitter'
-        facebook: 'Refuge Restrooms sa Facebook'
-        email: 'Mag-padala ng mensahe sa Refuge Restrooms'
-      refuge-restrooms-is-open-source: 'Ang Refuge Restrooms ay bukas para sa lahat na gamitin.'
+        github: 'Refuge Travesties sa GitHub'
+        twitter: 'Refuge Travesties sa twitter'
+        facebook: 'Refuge Travesties sa Facebook'
+        email: 'Mag-padala ng mensahe sa Refuge Travesties'
+      refuge-travesties-is-open-source: 'Ang Refuge Travesties ay bukas para sa lahat na gamitin.'
       code-on-github: 'code sa github.'
       contribute-to-the-project: 'mag-ambag sa proyekto'
       on-patreon: 'sa patreon.'
       copyleft: 'copyleft'
-      refuge-restrooms: 'Refuge Restrooms'
+      refuge-travesties: 'Refuge Travesties'

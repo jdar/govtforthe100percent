@@ -1,8 +1,0 @@
-pt-BR:
-  restrooms:
-    index:
-      map-view-button-label: 'Ver mapa'
-
-    show:
-      thumbs-up-button-label: 'Gostei'
-      thumbs-down-button-label: 'Não Gostei'

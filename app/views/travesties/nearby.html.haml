@@ -1,0 +1,8 @@
+- if @travesties.empty?
+  .none
+    %p= t('.none')
+- else
+  %h2= t('.heading')
+  %p= t('.body')
+  .minimalTravestyList= render @travesties
+  .clearfix

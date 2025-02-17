@@ -30,13 +30,13 @@ COPY --from=node-base /usr/local/ /usr/local/
 RUN node -v && npm -v && yarn -v
 
 # Create and set working directory
-RUN mkdir /refugerestrooms
-WORKDIR /refugerestrooms
+RUN mkdir /refugetravesties
+WORKDIR /refugetravesties
 
 # Copy and install Ruby dependencies
-COPY Gemfile Gemfile.lock /refugerestrooms/
+COPY Gemfile Gemfile.lock /refugetravesties/
 RUN bundle install
 
 # Copy and install Node.js packages with Yarn
-COPY package.json yarn.lock /refugerestrooms/
+COPY package.json yarn.lock /refugetravesties/
 RUN yarn install --pure-lockfile && yarn cache clean

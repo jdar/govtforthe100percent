@@ -1,7 +1,7 @@
 pl:
   contacts:
     new:
-      request-edit-for-restroom: 'Zasugeruj zmianę w łazience %{restroom_name}'
+      request-edit-for-travesty: 'Zasugeruj zmianę w łazience %{travesty_name}'
       contact-title: 'Kontakt'
       leave-this-field-blank: 'Zostaw to pole puste!'
     submitted:

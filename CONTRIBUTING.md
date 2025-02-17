@@ -9,14 +9,14 @@ https://help.github.com/articles/fork-a-repo/
 - **Windows 10 (Pro/Enterprise, 64-bit):** https://store.docker.com/editions/community/docker-ce-desktop-windows
 - **macOS El Capitan 10.11 and newer:** https://store.docker.com/editions/community/docker-ce-desktop-mac
 
-_(Other Mac or Windows OS? See [instructions for Docker Toolbox](https://github.com/RefugeRestrooms/refugerestrooms/wiki/How-to-use-Docker-Toolbox-with-Refuge-Restrooms).)_
+_(Other Mac or Windows OS? See [instructions for Docker Toolbox](https://github.com/RefugeTravesties/refugetravesties/wiki/How-to-use-Docker-Toolbox-with-Refuge-Travesties).)_
 
-_(Running Linux? See [instructions for Docker CE on Linux](https://github.com/RefugeRestrooms/refugerestrooms/wiki/How-to-use-Docker-CE-on-Linux-with-Refuge-Restrooms).)_
+_(Running Linux? See [instructions for Docker CE on Linux](https://github.com/RefugeTravesties/refugetravesties/wiki/How-to-use-Docker-CE-on-Linux-with-Refuge-Travesties).)_
 
-Trouble with docker? The [Troubleshooting Docker wiki](https://github.com/RefugeRestrooms/refugerestrooms/wiki/Troubleshooting-Docker) outlines solutions for common errors.
+Trouble with docker? The [Troubleshooting Docker wiki](https://github.com/RefugeTravesties/refugetravesties/wiki/Troubleshooting-Docker) outlines solutions for common errors.
 
 ### 3 Build the Docker Containers
-Build the containers from any [terminal](https://github.com/RefugeRestrooms/refugerestrooms/wiki/What-is-a-Terminal-(or-%22Terminal-Emulator%22)%3F-How-do-I-run-text-based-commands-on-my-computer%3F) program with:
+Build the containers from any [terminal](https://github.com/RefugeTravesties/refugetravesties/wiki/What-is-a-Terminal-(or-%22Terminal-Emulator%22)%3F-How-do-I-run-text-based-commands-on-my-computer%3F) program with:
 ```
 docker-compose build
 ```
@@ -26,7 +26,7 @@ Optional: list the containers you just built:
 docker ps
 ```
 
-You should see two containers: refugerestrooms_web and postgres.
+You should see two containers: refugetravesties_web and postgres.
 
 ### 4 Run the Docker Containers
 
@@ -47,7 +47,7 @@ If you need to run commands on the Docker container directly, run this:
 ```
 docker-compose run web bash
 ```
-_(This will give you a full interactive terminal session running on the Docker machine. For example, run `bundle update` to update the Gems in the Gemfile to more recent versions, or `rails console` to access web objects like `Restroom.first`.)_
+_(This will give you a full interactive terminal session running on the Docker machine. For example, run `bundle update` to update the Gems in the Gemfile to more recent versions, or `rails console` to access web objects like `Travesty.first`.)_
 
 Occasionally, you might need to rebuild the Docker machine so it picks up major updates (such as a new version of Ruby, or an updated Gemfile). To do so, run `docker-compose down` and `docker-compose build`.
 
@@ -55,30 +55,30 @@ If you want to access the postgres container to reach the psql command line do
 
 ```
 docker-compose run db bash
-psql -h refugerestrooms_db_1 -U postgres
+psql -h refugetravesties_db_1 -U postgres
 ```
 
 or equivalently:
 ```
-docker-compose run db psql -h refugerestrooms_db_1 -U postgres
+docker-compose run db psql -h refugetravesties_db_1 -U postgres
 ```
 
 ### 6 Run the Tests
 ```
 docker-compose run -e "RAILS_ENV=test" web rake db:migrate:reset spec
 ```
-_(If you want to know if your changes pass our automated testing, before even submitting your changes to RefugeRestrooms on Github, this will let you know.)_
+_(If you want to know if your changes pass our automated testing, before even submitting your changes to RefugeTravesties on Github, this will let you know.)_
 
 If you want to run an individual spec, first log in to the container, then the spec.  E.g.:
 ```
 docker-compose run web bash
-rspec spec/models/restroom_spec.rb
+rspec spec/models/travesty_spec.rb
 ```
 
 This is equivalent, but slower during a code-test-code-test development cycle:
 
 ```
-docker-compose run web rspec spec/models/restroom_spec.rb
+docker-compose run web rspec spec/models/travesty_spec.rb
 ```
 
 ### 7 Linting Code
@@ -108,13 +108,13 @@ docker-compose run rake db:fixaccents
 ```
 
 ### Assets
-* [Assets Repo](https://github.com/RefugeRestrooms/refuge_assets)
+* [Assets Repo](https://github.com/RefugeTravesties/refuge_assets)
 
 ## Testing
 
-Please cover any new code with specs. We prefer code to be covered using [RSpec](https://github.com/RefugeRestrooms/refugerestrooms/wiki/What-is-RSpec%3F-How-do-I-create-unit-tests-for-Ruby-code%3F) or [Capybara](https://github.com/RefugeRestrooms/refugerestrooms/wiki/What-is-Capybara%3F-What-is-PhantomJS%3F-What-is-Poltergeist%3F).
+Please cover any new code with specs. We prefer code to be covered using [RSpec](https://github.com/RefugeTravesties/refugetravesties/wiki/What-is-RSpec%3F-How-do-I-create-unit-tests-for-Ruby-code%3F) or [Capybara](https://github.com/RefugeTravesties/refugetravesties/wiki/What-is-Capybara%3F-What-is-PhantomJS%3F-What-is-Poltergeist%3F).
 
 ## Now What?
-Checkout our [Wiki](https://github.com/RefugeRestrooms/refugerestrooms/wiki) and specifically the [newcomers guide](https://github.com/RefugeRestrooms/refugerestrooms/wiki/Maintainers'-Manual-%5C--Newcomers'-Guide).
+Checkout our [Wiki](https://github.com/RefugeTravesties/refugetravesties/wiki) and specifically the [newcomers guide](https://github.com/RefugeTravesties/refugetravesties/wiki/Maintainers'-Manual-%5C--Newcomers'-Guide).
 
-Please also read our [Code of Conduct](https://github.com/RefugeRestrooms/refugerestrooms/blob/develop/CODE_OF_CONDUCT.md), which gives guidance on our standards of community and interaction.
+Please also read our [Code of Conduct](https://github.com/RefugeTravesties/refugetravesties/blob/develop/CODE_OF_CONDUCT.md), which gives guidance on our standards of community and interaction.

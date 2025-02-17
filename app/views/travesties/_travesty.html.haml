@@ -1,0 +1,40 @@
+- unisex_class = travesty.unisex? ? '' : 'not_unisex'
+- accessible_class = travesty.accessible? ? '' : 'not_accessible'
+- changing_table_class = travesty.changing_table? ? '' : 'no_changing_table'
+
+%li{ class: "listItem clearfix #{unisex_class} #{accessible_class} #{changing_table_class}",
+          data: { id: travesty.id} }
+  .listItemImage
+    / image tag goes here
+  .itemInfo
+    .itemName= link_to_unless_current(travesty.name.titleize, travesty)
+    .itemStreet="#{travesty.street}, #{travesty.city}, #{travesty.state}"
+    - if travesty.rated?
+      - rating_class_name = case RatingLevel.for_travesty(travesty)
+      - when RatingLevel.green  then 'greenRating'
+      - when RatingLevel.yellow then 'yellowRating'
+      - when RatingLevel.red    then 'redRating'
+      - else ''
+      %div{:class => "itemRating #{rating_class_name}"}
+        = t('travesty.rating.positive', percentage: travesty.rating_percentage.round)
+    - else
+      .itemRating= t('travesty.rating.unrated')
+
+  .itemExtraInfo
+    .itemDistance
+      - if travesty.respond_to?(:distance)
+        = travesty.distance.round(2)
+        = t("travesty.distance.miles")
+        \/
+        = miles_to_kilometers(travesty.distance).round(2)
+        = t("travesty.distance.kilometers")
+    .itemIcons
+      - if travesty.unisex?
+        .unisexTravesty{:title => t("travesty.type.unisex")}
+          %i.fa.fa-transgender-alt.fa-2x
+      - if travesty.accessible?
+        .ADATravesty{:title => t("travesty.accessible")}
+          %i.fa.fa-wheelchair.fa-2x
+      - if travesty.changing_table?
+        .changingTable{:title => t("travesty.changing_table")}
+          %i.fa.fa-child.fa-2x

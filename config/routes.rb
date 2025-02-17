@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
     ActiveAdmin.routes(self)
-    resources :restrooms, except: [:edit, :destroy]
+    resources :travesties, except: [:edit, :destroy]
 
     namespace :api do
       resources :docs, only: [:index]

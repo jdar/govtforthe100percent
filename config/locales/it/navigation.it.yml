@@ -2,10 +2,10 @@ it:
   layouts:
     navigation:
       toggle-navigation-button-label: 'Attiva la navigazione'
-      submit-a-new-restroom-hyperlink-label: 'Invia un nuovo servizio igienico'
+      submit-a-new-travesty-hyperlink-label: 'Invia un nuovo servizio igienico'
       about-hyperlink-label: 'About'
       contact-hyperlink-label: 'Contatti'
 
       resources-dropdown-button-label: 'Risorse'
-      download-unisex-restroom-signs-hyperlink-label: 'Scarica le insegne Unisex Restroom'
+      download-unisex-travesty-signs-hyperlink-label: 'Scarica le insegne Unisex Travesty'
       public-api-hyperlink-label: API Pubblica

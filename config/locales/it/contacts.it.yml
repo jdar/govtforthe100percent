@@ -1,7 +1,7 @@
 it:
   contacts:
     new:
-      request-edit-for-restroom: 'Richiesta di modifica per il servizio igienico %{restroom_name}'
+      request-edit-for-travesty: 'Richiesta di modifica per il servizio igienico %{travesty_name}'
       contact-title: 'Contatto'
       leave-this-field-blank: 'Lascia questo spazio bianco!'
     submitted:

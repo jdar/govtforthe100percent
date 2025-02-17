@@ -23,7 +23,7 @@ If you think this proposal is easy or hard, you can say so here, so contributors
 
 A concise description of what benefits and changes this proposal would introduce when complete.
 
-_(Helps convey what this means to the Refuge Restrooms project, and why this proposal is worth working on.)_
+_(Helps convey what this means to the Refuge Travesties project, and why this proposal is worth working on.)_
 
 ## Rationale
 
