@@ -10,3 +10,17 @@ TESTING:
 ```
 docker-compose exec web bundle exec rspec
 ```
+
+```
+# Login to Heroku Container Registry
+heroku container:login
+
+# Build & push the updated Docker image
+DOCKER_DEFAULT_PLATFORM=linux/amd64 heroku container:push web --app gft100p 
+
+# Release the container
+heroku container:release web --app gft100p
+
+# Run migrations
+heroku run rails db:migrate --app gft100p
+```
