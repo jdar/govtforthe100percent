@@ -5,14 +5,14 @@
         / Brand and toggle get grouped for better mobile display
         .navbar-header
           %a#logo.toiletLogo{:href => "/"}
-            .navbar-brand Travesties
+            .navbar-brand Experiences
           %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
             %span.sr-only= t('.toggle-navigation-button-label')
             %i.fa.fa-bars.fa-2x
         / Collect the nav links, forms, and other content for toggling
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
           %ul.nav.navbar-nav.navbar-right
-            %li= link_to t('.submit-a-new-travesty-hyperlink-label'), new_travesty_path
+            %li= link_to t('.submit-a-new-experience-hyperlink-label'), new_experience_path
             %li= link_to t('.about-hyperlink-label'), page_path('about')
             %li= link_to t('.contact-hyperlink-label'), contact_path
             %li.dropdown

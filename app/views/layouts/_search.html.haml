@@ -1,7 +1,7 @@
 - splash = false if local_assigns[:splash].nil?
 
 .row.search-container
-  = form_tag travesties_path, class: "search-travesties-form", method: :get do
+  = form_tag experiences_path, class: "search-experiences-form", method: :get do
     = hidden_field_tag :lat, ""
     = hidden_field_tag :long, ""
     .input-group

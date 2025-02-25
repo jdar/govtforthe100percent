@@ -8,9 +8,9 @@
 
 require 'csv'
 
-Travesty.transaction do
+Experience.transaction do
   CSV.foreach('db/export.csv') do |row|
-    travesty = Travesty.create(
+    experience = Experience.create(
       :name => row[1],
       :street => row[3],
       :city => row[4],
@@ -23,6 +23,6 @@ Travesty.transaction do
       :longitude => row[9],
       :country => row[6]
       )
-    travesty.update(edit_id: travesty.id)
+    experience.update(edit_id: experience.id)
   end
 end

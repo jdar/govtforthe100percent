@@ -2,10 +2,10 @@ fil:
   layouts:
     navigation:
       toggle-navigation-button-label: 'I-toggle ang nabigasyon'
-      submit-a-new-travesty-hyperlink-label: 'Magsumite ng Bagong Banyo'
+      submit-a-new-experience-hyperlink-label: 'Magsumite ng Bagong Banyo'
       about-hyperlink-label: 'Tungkol sa'
       contact-hyperlink-label: 'Makipag-ugnay sa'
 
       resources-dropdown-button-label: 'Mga Mapagkukunan'
-      download-unisex-travesty-signs-hyperlink-label: 'I-download ang Mga Palatandaan ng Unisex na Banyo'
+      download-unisex-experience-signs-hyperlink-label: 'I-download ang Mga Palatandaan ng Unisex na Banyo'
       public-api-hyperlink-label: 'Pampublikong API'

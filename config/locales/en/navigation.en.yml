@@ -2,10 +2,10 @@ en:
   layouts:
     navigation:
       toggle-navigation-button-label: 'Toggle navigation'
-      submit-a-new-travesty-hyperlink-label: 'Submit a New Travesty'
+      submit-a-new-experience-hyperlink-label: 'Submit a New Experience'
       about-hyperlink-label: 'About'
       contact-hyperlink-label: 'Contact'
 
       resources-dropdown-button-label: 'Resources'
-      download-unisex-travesty-signs-hyperlink-label: 'Download Unisex Travesty Signs'
+      download-unisex-experience-signs-hyperlink-label: 'Download Unisex Experience Signs'
       public-api-hyperlink-label: Public API

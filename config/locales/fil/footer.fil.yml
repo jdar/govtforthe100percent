@@ -2,13 +2,13 @@ fil:
   layouts:
     footer:
       aria-labels:
-        github: 'Refuge Travesties sa GitHub'
-        twitter: 'Refuge Travesties sa twitter'
-        facebook: 'Refuge Travesties sa Facebook'
-        email: 'Mag-padala ng mensahe sa Refuge Travesties'
-      refuge-travesties-is-open-source: 'Ang Refuge Travesties ay bukas para sa lahat na gamitin.'
+        github: 'Refuge Experiences sa GitHub'
+        twitter: 'Refuge Experiences sa twitter'
+        facebook: 'Refuge Experiences sa Facebook'
+        email: 'Mag-padala ng mensahe sa Refuge Experiences'
+      refuge-experiences-is-open-source: 'Ang Refuge Experiences ay bukas para sa lahat na gamitin.'
       code-on-github: 'code sa github.'
       contribute-to-the-project: 'mag-ambag sa proyekto'
       on-patreon: 'sa patreon.'
       copyleft: 'copyleft'
-      refuge-travesties: 'Refuge Travesties'
+      refuge-experiences: 'Refuge Experiences'

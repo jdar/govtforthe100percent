@@ -1,9 +1,9 @@
 it:
   about:
     title: 'Riguardo a REFUGE'
-    p1header: "Cos'è REFUGE travesties?"
+    p1header: "Cos'è REFUGE experiences?"
     p1:
-      first: "Refuge Travesties è una web application che punta a fornire l'accesso sicuro a servizi igienici per individui transgender, intersex, e genere non conforme. Gli utenti possono cercare servizi igienici in base alla vicinanza ad una posizione richiesta, aggiungere nuovi annunci di servizi igienici, così come commentare e dare un punteggio agli annunci già esistenti."
+      first: "Refuge Experiences è una web application che punta a fornire l'accesso sicuro a servizi igienici per individui transgender, intersex, e genere non conforme. Gli utenti possono cercare servizi igienici in base alla vicinanza ad una posizione richiesta, aggiungere nuovi annunci di servizi igienici, così come commentare e dare un punteggio agli annunci già esistenti."
       second: 'Siamo trans e puntiamo a creare una comunità focalizzata non solo sul trovare accessi a servizi igienici sicuri già esistenti, ma anche sostenere la causa per la sicurezza di persone transgender, intersex, e di genere non conforme.'
     p2header: 'Da dove avete preso tutti questi dati?'
     p2: 'I primi 4500 inserimenti sono grazie al vecchio database Safe2Pee. Il resto del nostro database è generato dai nostri utenti. Se sei a conoscenza di un servizio igienico sicuro o gender neutral, per favore aggiungilo al nostro database!'

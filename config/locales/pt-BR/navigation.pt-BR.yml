@@ -2,10 +2,10 @@ pt-BR:
   layouts:
     navigation:
       toggle-navigation-button-label: 'Alternar navegação'
-      submit-a-new-travesty-hyperlink-label: 'Cadastrar Banheiro'
+      submit-a-new-experience-hyperlink-label: 'Cadastrar Banheiro'
       about-hyperlink-label: 'Sobre'
       contact-hyperlink-label: 'Contato'
 
       resources-dropdown-button-label: 'Recursos'
-      download-unisex-travesty-signs-hyperlink-label: 'Baixar Avisos de Banheiro Unissex'
+      download-unisex-experience-signs-hyperlink-label: 'Baixar Avisos de Banheiro Unissex'
       public-api-hyperlink-label: API Pública

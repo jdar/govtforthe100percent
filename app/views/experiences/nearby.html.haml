@@ -1,0 +1,8 @@
+- if @experiences.empty?
+  .none
+    %p= t('.none')
+- else
+  %h2= t('.heading')
+  %p= t('.body')
+  .minimalExperienceList= render @experiences
+  .clearfix

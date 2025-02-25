@@ -3,9 +3,9 @@ en:
     index:
       life-is-tough: 'Autocracy by 1000 cuts...'
       find-refuge: 'Get Outraged'
-      add-travesty-button-label: 'Add A Travesty'
+      add-experience-button-label: 'Add A Experience'
 
       html-alt-attributes:
-        app-store: 'Refuge Travesties iOS app download'
-        play-store: 'Refuge Travesties Android app download'
+        app-store: 'Refuge Experiences iOS app download'
+        play-store: 'Refuge Experiences Android app download'
         patreon: 'Support the project on Patreon'

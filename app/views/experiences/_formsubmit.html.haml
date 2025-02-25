@@ -1,0 +1,98 @@
+%h1= t('experience.add_new')
+
+= simple_form_for @experience, :url => experiences_path, :method => :post, html: {class: 'submit-new-bathroom-form form-vertical'} do |f|
+  %h5= t('experience.required')
+  .clearfix
+    %button.btn.btn-light-purple.guess-btn{:type => "button", :value => t('experience.guess_location')}
+      = t('experience.guess_location')
+      %i.fa.fa-refresh.fa-spin
+
+  / Add map for preview
+  #mapArea.hidden{ data: { latitude: 38.904735, longitude: -77.033812 } }
+
+  .nearby-container.footroom
+    // Content of nearby experiences gets rendered here.
+
+  = f.input :name, :required => true
+  = f.input :street, :required => true
+  = f.input :city, :required => true
+  = f.input :state, :required => true
+  = f.input :country, priority: ["United States", "Canada", "United Kingdom"], :required => true, input_html: {class: 'form-control'}
+  = f.hidden_field :latitude
+  = f.hidden_field :longitude
+  = f.hidden_field :edit_id
+  = f.hidden_field :approved
+  = f.input :accessible, :collection => [[t('experience.accessible'), true], [t('experience.not_accessible'), false]], :include_blank => false
+  = f.input :unisex, :collection => [[t('experience.type.unisex'), true], [t('experience.type.single_stall'), false]], :include_blank => false
+  = f.input :changing_table, :collection => [[t('experience.changing_table'), true], [t('experience.no_changing_table'), false]], :include_blank => false
+  = f.input :directions, :placeholder => t('experience.directions_hint'), :as => :text, :required => false, :input_html => { :class => "span6" }
+  = f.input :comment, :placeholder => t('experience.comments_hint'), :as => :text, :required => false, :input_html => { :class => "span6" }
+
+  = f.input :zip_code, 
+            label: "Zip code where I reside (5 digits)", 
+            required: true, 
+            input_html: { 
+              pattern: "\\d{5}", 
+              maxlength: 5, 
+              minlength: 5, 
+              placeholder: "12345" 
+            }
+  
+  = f.input :federal_agency, 
+            label: "Federal agency involved in my experience", 
+            required: true, 
+            input_html: { 
+              class: 'agency-autocomplete', 
+              data: { autocomplete_url: agencies_path } 
+            }
+  
+  = f.input :agency_website, 
+            label: "Website of agency office or specific federal program featured in your experience", 
+            as: :url, 
+            required: false, 
+            input_html: { 
+              placeholder: "https://example.com", 
+              pattern: "https?://.+" 
+            }
+  
+  = f.input :experience, 
+            label: "My experience", 
+            as: :select, 
+            collection: [
+              "Experience Option 1", 
+              "Experience Option 2", 
+              "Experience Option 3"
+            ], 
+            prompt: "Select one", 
+            required: true
+  
+  = f.input :immediate_results, 
+            label: "As an immediate result of the federal action, what happened? (check all that apply)", 
+            as: :check_boxes, 
+            collection: [
+              "Action Option 1", 
+              "Action Option 2", 
+              "Action Option 3"
+            ]
+  
+  = f.input :experience_details, 
+            label: "Please describe the details of your experience", 
+            as: :text, 
+            required: true, 
+            input_html: { rows: 5 }
+  
+  = f.input :open_to_contact, 
+            label: "I am open to being contacted privately if someone wants to discuss the details of my experience with me", 
+            as: :boolean
+  
+  = f.input :contact_name, label: "Name", required: false
+  = f.input :contact_email, label: "Email", required: false
+  = f.input :contact_phone, label: "Phone number", required: false 
+
+  .form-group
+    .g-recaptcha{'data-sitekey' => "#{ENV['RECAPTCHA_SITE_KEY']}"}
+
+  / Click to preview location
+  %button{type: 'button', class: 'preview-btn linkbutton'}
+    = t('experience.preview')
+  = f.button :submit, t('experience.restsubmit'), :class => "linkbutton"

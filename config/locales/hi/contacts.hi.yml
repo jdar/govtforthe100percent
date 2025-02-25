@@ -1,7 +1,7 @@
 hi:
   contacts:
     new:
-      request-edit-for-travesty:  '% {travesty_name} रेस्टरूम के लिए संशोधन का अनुरोध करें'
+      request-edit-for-experience:  '% {experience_name} रेस्टरूम के लिए संशोधन का अनुरोध करें'
       contact-title: 'संपर्क'
       leave-this-field-blank: 'इस फील्ड को खाली छोड़ दो!'
     submitted:

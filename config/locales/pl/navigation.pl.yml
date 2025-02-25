@@ -2,9 +2,9 @@ pl:
   layouts:
     navigation:
       toggle-navigation-button-label: 'Nawigacja'
-      submit-a-new-travesty-hyperlink-label: 'Dodaj łazienkę'
+      submit-a-new-experience-hyperlink-label: 'Dodaj łazienkę'
       about-hyperlink-label: 'O Refuge'
       contact-hyperlink-label: 'Kontakt'
       resources-dropdown-button-label: 'Materiały'
-      download-unisex-travesty-signs-hyperlink-label: 'Pobierz znaki łazienek unisex'
+      download-unisex-experience-signs-hyperlink-label: 'Pobierz znaki łazienek unisex'
       public-api-hyperlink-label: Public API

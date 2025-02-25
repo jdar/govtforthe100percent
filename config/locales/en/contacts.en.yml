@@ -1,7 +1,7 @@
 en:
   contacts:
     new:
-      request-edit-for-travesty: 'Request Edit for %{travesty_name} Travesty'
+      request-edit-for-experience: 'Request Edit for %{experience_name} Experience'
       contact-title: 'Contact'
       leave-this-field-blank: 'Leave this field blank!'
     submitted:

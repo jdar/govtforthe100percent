@@ -1,50 +1,50 @@
-Given(/^I am on the travesty page for id 1$/) do
+Given(/^I am on the experience page for id 1$/) do
   FactoryBot.create(
-    :travesty,
+    :experience,
     id: 1,
-    name: 'Winnipeg travesty',
+    name: 'Winnipeg experience',
     street: '91 Albert St.',
     city: 'Winnipeg',
     state: 'MB',
     country: 'Canada'.merge(locations[:Winnipeg])
   )
-  visit '/travesties/1'
+  visit '/experiences/1'
 end
 
 Then(/^I should see the edit link$/) do
   expect(page).to have_content("Propose an edit to this listing.")
 end
 
-Given(/^I visit the edit page for 'Winnepeg travesty'$/) do
+Given(/^I visit the edit page for 'Winnepeg experience'$/) do
   FactoryBot.create(
-    :travesty,
+    :experience,
     id: 1,
-    name: 'Winnipeg travesty',
+    name: 'Winnipeg experience',
     street: '91 Albert St.',
     city: 'Winnipeg',
     state: 'MB',
     country: 'Canada'.merge(locations[:Winnipeg])
   )
-  visit '/travesties/new?edit_id=1&travesty_id=1'
+  visit '/experiences/new?edit_id=1&experience_id=1'
 end
 
-Then(/^I should see the travesty address$/) do
+Then(/^I should see the experience address$/) do
   expect(page).to have_content("684 East hastings")
 end
 
-Given(/^I submit an edit to 'Winnepeg Travesty'$/) do
+Given(/^I submit an edit to 'Winnepeg Experience'$/) do
   FactoryBot.create(
-    :travesty,
+    :experience,
     id: 1,
-    name: 'Winnipeg travesty',
+    name: 'Winnipeg experience',
     street: '91 Albert St.',
     city: 'Winnipeg',
     state: 'MB',
     country: 'Canada'.merge(locations[:Winnipeg])
   )
-  visit '/travesties/new?edit_id=1&travesty_id=1'
-  fill_in 'travesty[name]', with: 'Not Winnepeg travesty'
-  click_button "Save Travesty"
+  visit '/experiences/new?edit_id=1&experience_id=1'
+  fill_in 'experience[name]', with: 'Not Winnepeg experience'
+  click_button "Save Experience"
 end
 
 Then(/^I should see that the edit has been submitted$/) do

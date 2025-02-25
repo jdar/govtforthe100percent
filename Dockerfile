@@ -30,14 +30,14 @@ RUN node -v && npm -v && yarn -v
 RUN yarn add webpack webpack-cli
 
 # Create and set working directory
-RUN mkdir /refugetravesties
-WORKDIR /refugetravesties
+RUN mkdir /refugeexperiences
+WORKDIR /refugeexperiences
 COPY . .
 
 RUN bundle install
 
 # Copy and install Node.js packages with Yarn
-COPY package.json yarn.lock /refugetravesties/
+COPY package.json yarn.lock /refugeexperiences/
 RUN yarn install --pure-lockfile && yarn cache clean
 
 # Copy the entrypoint script and ensure it is executable

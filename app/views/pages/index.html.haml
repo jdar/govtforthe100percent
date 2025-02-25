@@ -13,16 +13,16 @@
 
   .row.more-headroom
     .col-xs-12.col-sm-6.col-sm-offset-3
-      = button_to new_travesty_path, method: :get, class: "btn btn-lg btn-purple splash-add-travesty-btn" do
-        = t('.add-travesty-button-label')
+      = button_to new_experience_path, method: :get, class: "btn btn-lg btn-purple splash-add-experience-btn" do
+        = t('.add-experience-button-label')
         %i.fa.fa-plus-square-o.fa-2x
   .row.even-more-headroom
     .col-xs-6.col-sm-3.col-sm-offset-3
-      = link_to image_tag("app-store.svg", role: "img", alt: t('.html-alt-attributes.app-store')), "https://itunes.apple.com/us/app/refuge-travesties/id968531953?mt=8"
+      = link_to image_tag("app-store.svg", role: "img", alt: t('.html-alt-attributes.app-store')), "https://itunes.apple.com/us/app/refuge-experiences/id968531953?mt=8"
     .col-xs-6.col-sm-3
-      = link_to image_tag("play-store.png", alt: t('.html-alt-attributes.play-store')), "https://play.google.com/store/apps/details?id=org.refugetravesties"
+      = link_to image_tag("play-store.png", alt: t('.html-alt-attributes.play-store')), "https://play.google.com/store/apps/details?id=org.refugeexperiences"
 
   .row.more-headroom.splash-bottom-padding
     .col-xs-12.col-sm-6.col-sm-offset-3
-      = link_to image_tag("patreon.png", alt: t('.html-alt-attributes.patreon')), "https://patreon.com/refugetravesties"
+      = link_to image_tag("patreon.png", alt: t('.html-alt-attributes.patreon')), "https://patreon.com/refugeexperiences"
   = render 'layouts/footer'

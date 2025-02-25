@@ -8,7 +8,7 @@ namespace :db do
       "™" => "ô",
       "&Atilde;&uml;" => "è",
       "&Atilde;&copy;" => "é",
-      "&iuml;&iquest;&frac12;Travesty&iuml;&iquest;&frac12;" => "'Travesty'",
+      "&iuml;&iquest;&frac12;Experience&iuml;&iquest;&frac12;" => "'Experience'",
       "&iuml;&iquest;&frac12; " => "é ",
       "ÌÊ" => "à",
       "Ì«" => "ô",
@@ -39,14 +39,14 @@ namespace :db do
 
       puts field, "="*field.length,""
 
-      Travesty.where(where_clause).each do |travesty|
+      Experience.where(where_clause).each do |experience|
         transformations.each do |original, transformed|
-          travesty.send("#{field}=", travesty.send(field).gsub(original, transformed))
+          experience.send("#{field}=", experience.send(field).gsub(original, transformed))
         end
 
-        puts travesty.id, "", travesty.send("#{field}_was"), "", travesty.send(field), "\n\n"
+        puts experience.id, "", experience.send("#{field}_was"), "", experience.send(field), "\n\n"
 
-        travesty.save unless args.dry_run
+        experience.save unless args.dry_run
       end
     end
   end

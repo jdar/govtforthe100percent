@@ -1,7 +1,7 @@
 fil:
   contacts:
     new:
-      request-edit-for-travesty: 'Humiling ng pagbabago para sa %{travesty_name}'
+      request-edit-for-experience: 'Humiling ng pagbabago para sa %{experience_name}'
       contact-title: 'Makipag-ugnay'
       leave-this-field-blank: 'Iwanang blangko ang patlang na ito!'
     submitted:

@@ -1,8 +1,0 @@
-es:
-  travesties:
-    index:
-      map-view-button-label: 'Vista del Mapa'
-
-    show:
-      thumbs-up-button-label: 'Aprobar este baño'
-      thumbs-down-button-label: 'Desaprobar este baño'

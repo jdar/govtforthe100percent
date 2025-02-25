@@ -3,9 +3,9 @@ fil:
     index:
       life-is-tough: 'Minsan ang buhay ay matigas ...'
       find-refuge: 'Maghanap ng Refuge'
-      add-travesty-button-label: 'Magdagdag ng isa pang Banyo'
+      add-experience-button-label: 'Magdagdag ng isa pang Banyo'
 
       html-alt-attributes:
-        app-store: 'I-download ang Refuge Travesties iOS app'
-        play-store: 'I-download ang Refuge Travesties Android app'
+        app-store: 'I-download ang Refuge Experiences iOS app'
+        play-store: 'I-download ang Refuge Experiences Android app'
         patreon: 'Suportahan ang proyekto sa Patreon'

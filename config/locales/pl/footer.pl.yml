@@ -2,14 +2,14 @@ pl:
   layouts:
     footer:
       aria-labels:
-        github: 'Refuge Travesties na GitHubie'
-        twitter: 'Refuge Travesties na Twitterze'
-        facebook: 'Refuge Travesties na Facebooku'
-        tumblr: 'blog Refuge Travesties na Tumblrze'
-        email: 'napisz email do Refuge Travesties'
-      refuge-travesties-is-open-source: 'refuge travesties jest projektem open source.'
+        github: 'Refuge Experiences na GitHubie'
+        twitter: 'Refuge Experiences na Twitterze'
+        facebook: 'Refuge Experiences na Facebooku'
+        tumblr: 'blog Refuge Experiences na Tumblrze'
+        email: 'napisz email do Refuge Experiences'
+      refuge-experiences-is-open-source: 'refuge experiences jest projektem open source.'
       code-on-github: 'wesprzyj na githubie'
       contribute-to-the-project: 'wesprzyj projekt'
       on-patreon: 'na Patreonie'
       copyleft: 'copyleft'
-      refuge-travesties: 'refuge travesties.'
+      refuge-experiences: 'refuge experiences.'
