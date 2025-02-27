@@ -1,5 +1,4 @@
-# Stage 1: Ruby Base (Debian-based, ARM64)
-FROM --platform=linux/arm64 ruby:3.2.2-slim AS ruby-base
+FROM ruby:3.2.2-slim AS ruby-base
 
 # Install required system packages
 RUN apt-get update && apt-get install -y \
@@ -15,7 +14,7 @@ RUN apt-get update && apt-get install -y \
   && rm -rf /var/lib/apt/lists/*
 
 # Stage 2: Node Base (Debian-based Node image for compatibility)
-FROM --platform=linux/arm64 node:16-slim AS node-base
+FROM node:20-slim AS node-base
 
 # Remove any pre-existing Yarn binaries and install Yarn globally
 RUN rm -f /usr/local/bin/yarn /usr/local/bin/yarnpkg && npm install -g yarn
@@ -28,11 +27,25 @@ COPY --from=node-base /usr/local/ /usr/local/
 
 # Verify installations (prints versions during build)
 RUN node -v && npm -v && yarn -v
+RUN yarn add webpack webpack-cli
 
 # Create and set working directory
 RUN mkdir /refugeexperiences
 WORKDIR /refugeexperiences
 COPY . .
+
 RUN bundle install
+
+# Copy and install Node.js packages with Yarn
+COPY package.json yarn.lock /refugeexperiences/
 RUN yarn install --pure-lockfile && yarn cache clean
-RUN chmod +x /refugeexperiences/setup/entry
+
+# Copy the entrypoint script and ensure it is executable
+COPY entrypoint.sh /usr/bin/entrypoint.sh
+RUN chmod +x /usr/bin/entrypoint.sh
+
+# Set the entrypoint so that the server.pid is removed at startup
+ENTRYPOINT ["/usr/bin/entrypoint.sh"]
+
+# Set default command for Heroku to start the Rails server
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
