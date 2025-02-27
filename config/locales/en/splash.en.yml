@@ -1,9 +1,9 @@
 en:
   pages:
     index:
-      life-is-tough: 'Autocracy by 1000 cuts...'
-      find-refuge: 'Get Outraged'
-      add-experience-button-label: 'Add A Experience'
+      life-is-tough: 'Are you or someone you know affected by the Chaos Cabinet?'
+      find-refuge: 'Tell us Now'
+      add-experience-button-label: 'Add An Experience'
 
       html-alt-attributes:
         app-store: 'Refuge Experiences iOS app download'

@@ -14,7 +14,7 @@ en:
     enter_location: 'Enter an address'
 
   experience:
-    add_new: 'Submit a experience to our database'
+    add_new: 'Submit an experience to our database'
     preview: 'Preview'
     required: '* marks required field'
     guess_location: 'Guess current location'
@@ -60,5 +60,5 @@ en:
   experiences:
     nearby:
       heading: 'Nearby experiences'
-      body: 'Before you submit a experience, please ensure it is not already one of the known experiences nearby.'
+      body: 'Before you submit an experience, please ensure it is not already one of the known experiences nearby.'
       none: 'No experiences were found nearby.'
