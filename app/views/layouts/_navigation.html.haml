@@ -17,8 +17,9 @@
             %li= link_to t('.contact-hyperlink-label'), contact_path
             %li.dropdown
               %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                = t('.resources-dropdown-button-label')
+                = "Pages"
                 %b.caret
               %ul.dropdown-menu
-                %li= link_to t('.public-api-hyperlink-label'), '/api/docs/'
+                %li= link_to "Privacy", '/pages/privacy'
+                //%li= link_to t('.public-api-hyperlink-label'), '/api/docs/'
         / /.navbar-collapse
