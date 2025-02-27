@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'experiences', :js do
   describe 'submission' do
-    it 'adds a experience when submitted' do
+    it 'adds an experience when submitted' do
       visit root_path
       click_link "Submit a New Experience"
       fill_in "experience[name]", with: "Vancouver experience"
@@ -86,7 +86,7 @@ describe 'experiences', :js do
   end
 
   describe 'preview' do
-    it 'can preview a experience before submitting' do
+    it 'can preview an experience before submitting' do
       visit "/"
       click_link "Submit a New Experience"
       fill_in "experience[name]", with: "Vancouver experience"

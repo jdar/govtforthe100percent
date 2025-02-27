@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe SaveExperience do
-  it 'saves a experience' do
+  it 'saves an experience' do
     experience = build(:experience, id: 1)
 
     actual_experience = described_class.new(experience).call

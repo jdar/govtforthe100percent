@@ -5,7 +5,7 @@ import { Geocoder } from '../../lib/geocoder';
 
 class Search {
   constructor(form) {
-    this.searchDefaultText = "1 Embarcadero Center, San Francisco, CA";
+    this.searchDefaultText = "1300 Pennsylvania Ave, NW,  Washington, DC 20004";
 
     // Define elements that will be in use in this class.
     this._initAutocomplete = this._initAutocomplete.bind(this);
@@ -80,10 +80,10 @@ class Search {
       .then(currentCoords => {
         this._updateForm(currentCoords.lat, currentCoords.long, "Current Location");
         this._form.submit();
-    }).then(null, err => {
+      }).then(null, err => {
         this._currentLocationButton.removeClass('locating');
         alert("To search by location, please refresh the page and allow us to access your location!");
-    });
+      });
   }
 
 
@@ -120,6 +120,6 @@ class Search {
 }
 
 $(() => {
-  $.fn.initializeSearch = function() { return new Search($(this)); };
+  $.fn.initializeSearch = function () { return new Search($(this)); };
   $('.search-experiences-form').initializeSearch();
 });

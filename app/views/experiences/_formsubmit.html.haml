@@ -13,77 +13,56 @@
   .nearby-container.footroom
     // Content of nearby experiences gets rendered here.
 
-  = f.input :name, :required => true
-  = f.input :street, :required => true
-  = f.input :city, :required => true
-  = f.input :state, :required => true
-  = f.input :country, priority: ["United States", "Canada", "United Kingdom"], :required => true, input_html: {class: 'form-control'}
+  //= f.input :name, :required => true
+  //= f.input :street, :required => true
+  //= f.input :city, :required => true
+  //= f.input :state, :required => true
+  //= f.input :country, priority: ["United States", "Canada", "United Kingdom"], :required => true, input_html: {class: 'form-control'}
+
   = f.hidden_field :latitude
   = f.hidden_field :longitude
   = f.hidden_field :edit_id
   = f.hidden_field :approved
-  = f.input :accessible, :collection => [[t('experience.accessible'), true], [t('experience.not_accessible'), false]], :include_blank => false
-  = f.input :unisex, :collection => [[t('experience.type.unisex'), true], [t('experience.type.single_stall'), false]], :include_blank => false
-  = f.input :changing_table, :collection => [[t('experience.changing_table'), true], [t('experience.no_changing_table'), false]], :include_blank => false
-  = f.input :directions, :placeholder => t('experience.directions_hint'), :as => :text, :required => false, :input_html => { :class => "span6" }
-  = f.input :comment, :placeholder => t('experience.comments_hint'), :as => :text, :required => false, :input_html => { :class => "span6" }
+  //= f.input :accessible, :collection => [[t('experience.accessible'), true], [t('experience.not_accessible'), false]], :include_blank => false
+  //= f.input :unisex, :collection => [[t('experience.type.unisex'), true], [t('experience.type.single_stall'), false]], :include_blank => false
+  //= f.input :changing_table, :collection => [[t('experience.changing_table'), true], [t('experience.no_changing_table'), false]], :include_blank => false
+  //= f.input :directions, :placeholder => t('experience.directions_hint'), :as => :text, :required => false, :input_html => { :class => "span6" }
+  //= f.input :comment, :placeholder => t('experience.comments_hint'), :as => :text, :required => false, :input_html => { :class => "span6" }
 
   = f.input :zip_code, 
-            label: "Zip code where I reside (5 digits)", 
-            required: true, 
-            input_html: { 
-              pattern: "\\d{5}", 
-              maxlength: 5, 
-              minlength: 5, 
-              placeholder: "12345" 
-            }
-  
+    label: "Zip code where I reside", 
+    required: true, 
+    input_html: { pattern: "\\d{5}", maxlength: 5, minlength: 5, placeholder: "12345" }
   = f.input :federal_agency, 
-            label: "Federal agency involved in my experience", 
-            required: true, 
-            input_html: { 
-              class: 'agency-autocomplete', 
-              data: { autocomplete_url: agencies_path } 
-            }
-  
+    label: "Federal agency involved in my experience", 
+    required: true, 
+    input_html: { class: 'agency-autocomplete', data: { autocomplete_url: agencies_path } }
   = f.input :agency_website, 
-            label: "Website of agency office or specific federal program featured in your experience", 
-            as: :url, 
-            required: false, 
-            input_html: { 
-              placeholder: "https://example.com", 
-              pattern: "https?://.+" 
-            }
-  
+    label: "Website of agency office or specific federal program featured in your experience", 
+    as: :url, 
+    required: false, 
+    input_html: { placeholder: "https://oig.usaid.gov/", pattern: "https?://.+" }
   = f.input :experience, 
-            label: "My experience", 
-            as: :select, 
-            collection: [
-              "Experience Option 1", 
-              "Experience Option 2", 
-              "Experience Option 3"
-            ], 
-            prompt: "Select one", 
-            required: true
-  
+    label: "My experience", 
+    as: :select, 
+    collection: [ "Termination of a federal program, contract, or grant that funded me or the organization I work for", "Indefinite withholding of money for a federal program, contract, or grant", "Termination of my job as a federal employee", "Investigation of me, my organization, or my federally-funded program or contract", "Loss of benefits provided directly for the federal government", "Loss of benefits provided through an entity or organization receiving federal funds", "Termination of my job because a White House policy has forbidden or denounced the law necessitating my position ", "Other" ], 
+    prompt: "Select one", 
+    required: true
   = f.input :immediate_results, 
-            label: "As an immediate result of the federal action, what happened? (check all that apply)", 
-            as: :check_boxes, 
-            collection: [
-              "Action Option 1", 
-              "Action Option 2", 
-              "Action Option 3"
-            ]
-  
+    label: "As an immediate result of the federal action", 
+    as: :check_boxes, 
+    collection: [ "My organization had to terminate a program that it offered to beneficiaries", "My organization had to furlough or terminate one or more paid positions", "My organization had to close its doors (temporarily or permanently)", "I am no longer employed by my organization", "I had to accept  a different job within my organization", "I am no longer employed by the federal government", "I or my organization must respond to an audit or investigation", "I am no longer receiving benefits that I had been receiving on an ongoing basis", "Other", ]
+  %br  
+  %p My story needs to be heard by others.
   = f.input :experience_details, 
-            label: "Please describe the details of your experience", 
-            as: :text, 
-            required: true, 
-            input_html: { rows: 5 }
-  
+    label: "Please describe the details of your experience", 
+    as: :text, 
+    required: true, 
+    input_html: { rows: 5 }
+  %hint (Please describe the details of your experience, including the purpose of your job or program; the reason for the agency (in)action, cancellation or termination, if known; and the effect(s) of the status change on your organization, you, or others.) 
   = f.input :open_to_contact, 
-            label: "I am open to being contacted privately if someone wants to discuss the details of my experience with me", 
-            as: :boolean
+    label: "I am open to being contacted privately if someone wants to discuss the details of my experience with me", 
+    as: :boolean
   
   = f.input :contact_name, label: "Name", required: false
   = f.input :contact_email, label: "Email", required: false
