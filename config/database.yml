@@ -8,10 +8,10 @@ default: &default
 
 development:
   <<: *default
-  database: bathrooms_development
+  database: wayback_development
 
 
 test:
   <<: *default
-  database: bathrooms_test
+  database: wayback_test
 

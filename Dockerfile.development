@@ -32,11 +32,7 @@ RUN node -v && npm -v && yarn -v
 # Create and set working directory
 RUN mkdir /refugeexperiences
 WORKDIR /refugeexperiences
-
-# Copy and install Ruby dependencies
-COPY Gemfile Gemfile.lock /refugeexperiences/
+COPY . .
 RUN bundle install
-
-# Copy and install Node.js packages with Yarn
-COPY package.json yarn.lock /refugeexperiences/
 RUN yarn install --pure-lockfile && yarn cache clean
+RUN chmod +x /refugeexperiences/setup/entry

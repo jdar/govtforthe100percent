@@ -11,6 +11,7 @@ TESTING:
 docker-compose exec web bundle exec rspec
 ```
 
+HOSTING
 ```
 # Login to Heroku Container Registry
 heroku container:login
@@ -24,3 +25,8 @@ heroku container:release web --app gft100p
 # Run migrations
 heroku run rails db:migrate --app gft100p
 ```
+
+RUN LOCALLY:
+
+
+
