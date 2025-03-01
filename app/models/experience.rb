@@ -8,6 +8,14 @@ class Experience < ApplicationRecord
   pg_search_scope(
     :search,
     against: {
+      zip_code: 'A',
+      federal_agency: 'B',
+      agency_website: 'C',
+      experience: 'D',
+      immediate_results: 'E',
+      experience_details: 'F',
+      #open_to_contact: 'G'
+=begin
       name: 'A',
       street: 'B',
       city: 'C',
@@ -15,12 +23,14 @@ class Experience < ApplicationRecord
       comment: 'B',
       directions: 'B',
       country: 'D'
+=end
     },
     using: { tsearch: { dictionary: "english" } },
     ignoring: :accents
   )
 
-  validates :name, :street, :city, :state, presence: true
+  #validates :name, :street, :city, :state, presence: true
+  validates :zip_code, :federal_agency, :agency_website, :experience, :immediate_results, :experience_details, :open_to_contact, presence: true
 
   geocoded_by :full_address
 
@@ -36,7 +46,7 @@ class Experience < ApplicationRecord
   end
 
   rakismet_attrs content: proc {
-    name + street + city + state + comment + directions + country
+    zip_code + federal_agency + agency_website + experience + immediate_results + experience_details
   }
 
   after_validation :perform_geocoding
@@ -54,7 +64,8 @@ class Experience < ApplicationRecord
   scope :updated_since, ->(date) { where("updated_at >= ?", date) }
 
   def full_address
-    "#{street}, #{city}, #{state}, #{country}"
+    #"#{street}, #{city}, #{state}, #{country}"
+    "#{zip_code}"
   end
 
   def rated?
@@ -79,7 +90,8 @@ class Experience < ApplicationRecord
   private
 
   def strip_slashes
-    %w[name street city state comment directions].each do |field|
+    #%w[name street city state comment directions].each do |field|
+    %w[zip_code federal_agency agency_website experience immediate_results experience_details open_to_contact].each do |field|
       attributes[field].try(:gsub!, "\\'", "'")
     end
   end

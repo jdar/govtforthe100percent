@@ -1,11 +1,13 @@
+.splash-header
+  %br
 .splash-content
   .row
     .col-xs-12.col-sm-8.col-sm-offset-2
       .splash-text-container.centered-text
         %h3.headroom
-          = t('.life-is-tough')
+          = "Way Back to Government"
         %h1.centered-text
-          = t('.find-refuge')
+          = "Recording history in real-time so we can find our way back." 
 
   .row.more-headroom
     .col-xs-12.col-sm-8.col-sm-offset-2
@@ -13,16 +15,20 @@
 
   .row.more-headroom
     .col-xs-12.col-sm-6.col-sm-offset-3
+      %span If you have been displaced or economically affected...
       = button_to new_experience_path, method: :get, class: "btn btn-lg btn-purple splash-add-experience-btn" do
         = t('.add-experience-button-label')
         %i.fa.fa-plus-square-o.fa-2x
   .row.even-more-headroom
     .col-xs-6.col-sm-3.col-sm-offset-3
-      = link_to image_tag("app-store.svg", role: "img", alt: t('.html-alt-attributes.app-store')), "https://itunes.apple.com/us/app/refuge-experiences/id968531953?mt=8"
+      = link_to image_tag("map.png", role: "img", alt: "Map"), "http://map"
     .col-xs-6.col-sm-3
-      = link_to image_tag("play-store.png", alt: t('.html-alt-attributes.play-store')), "https://play.google.com/store/apps/details?id=org.refugeexperiences"
-
-  .row.more-headroom.splash-bottom-padding
+      = link_to "http://submittal" do
+        = image_tag("submittal.png", alt: "Submit")
+        = "Submitted anonymously on March 1, 2025"
+  .row.more-headroom
     .col-xs-12.col-sm-6.col-sm-offset-3
-      = link_to image_tag("patreon.png", alt: t('.html-alt-attributes.patreon')), "https://patreon.com/refugeexperiences"
+      = button_to experiences_path, method: :get, class: "btn btn-lg btn-purple splash-add-experience-btn" do
+        = "Click here for all submissions."
+
   = render 'layouts/footer'

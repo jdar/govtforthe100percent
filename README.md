@@ -1,17 +1,14 @@
-https://github.com/RefugeRestrooms/refugerestrooms
-
-Copyleft; we need to post this repo as opensource, at the time it is finished.
 
 
-
-TESTING:
+# TESTING:
 
 
 ```
 docker-compose exec web bundle exec rspec
 ```
 
-HOSTING
+# HOSTING
+
 ```
 # Login to Heroku Container Registry
 heroku container:login
@@ -26,7 +23,22 @@ heroku container:release web --app gft100p
 heroku run rails db:migrate --app gft100p
 ```
 
-RUN LOCALLY:
+# RUN LOCALLY:
+
+```
+docker-compose down && docker-compose up --build
+```
 
 
+
+# LINKS:
+waybacktogovt.org
+https://www.linkedin.com/in/waybacktogovt/
+
+
+# Credits & License type
+
+Origin: https://github.com/RefugeRestrooms/refugerestrooms
+
+Copyleft; we need to post this repo as opensource, at the time it is finished.
 

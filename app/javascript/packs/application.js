@@ -12,6 +12,6 @@ import './views/experiences/experiences'
 import './views/experiences/search'
 import ApiDocs from './views/api/docs'
 
-document.addEventListener('DOMContentLoaded', function() {
-  if (document.getElementById('swagger-ui-container') != null ) { ApiDocs.loadSearch() }
+document.addEventListener('DOMContentLoaded', function () {
+  if (document.getElementById('swagger-ui-container') != null) { ApiDocs.loadSearch() }
 })

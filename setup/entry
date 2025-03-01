@@ -7,4 +7,8 @@ bundle check || bundle install --jobs 20 --retry 5
 # Set up the database for development, and seed with placeholder data from `db/export.csv`
 SEEDING_DONT_GEOCODE="true" rails db:setup
 
+# Compile Webpack assets
+#echo "Compiling Webpack assets..."
+#bundle exec rails webpacker:compile
+
 exec "$@"

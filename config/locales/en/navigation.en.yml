@@ -2,10 +2,9 @@ en:
   layouts:
     navigation:
       toggle-navigation-button-label: 'Toggle navigation'
-      submit-a-new-experience-hyperlink-label: 'Submit a New Experience'
-      about-hyperlink-label: 'About'
+      submit-a-new-experience-hyperlink-label: 'Submit'
+      about-hyperlink-label: 'About Us'
       contact-hyperlink-label: 'Contact'
 
       resources-dropdown-button-label: 'Resources'
-      download-unisex-experience-signs-hyperlink-label: 'Download Unisex Experience Signs'
       public-api-hyperlink-label: Public API

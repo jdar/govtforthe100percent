@@ -53,12 +53,21 @@
     as: :check_boxes, 
     collection: [ "My organization had to terminate a program that it offered to beneficiaries", "My organization had to furlough or terminate one or more paid positions", "My organization had to close its doors (temporarily or permanently)", "I am no longer employed by my organization", "I had to accept  a different job within my organization", "I am no longer employed by the federal government", "I or my organization must respond to an audit or investigation", "I am no longer receiving benefits that I had been receiving on an ongoing basis", "Other", ]
   %br  
+  %h3 Debug Immediate Results Checkboxes
+  %div.debug{ style: "border: 2px dashed red; padding: 10px; margin-bottom: 20px;" }
+    %p For debugging: forcing the checkboxes to be visible.
+    = f.input :immediate_results, 
+      label: "As an immediate result of the federal action, what happened? (check all that apply)",
+      as: :check_boxes, 
+      collection: [ "Action Option 1", "Action Option 2", "Action Option 3"],
+      input_html: { style: "display: block !important; background: #fff !important; color: #000 !important;" },
+      label_html: { style: "display: block !important; background: #fff !important; color: #000 !important;" }
   %p My story needs to be heard by others.
   = f.input :experience_details, 
     label: "Please describe the details of your experience", 
     as: :text, 
     required: true, 
-    input_html: { rows: 5 }
+    input_html: { rows: 5, class: "span6" }
   %hint (Please describe the details of your experience, including the purpose of your job or program; the reason for the agency (in)action, cancellation or termination, if known; and the effect(s) of the status change on your organization, you, or others.) 
   = f.input :open_to_contact, 
     label: "I am open to being contacted privately if someone wants to discuss the details of my experience with me", 

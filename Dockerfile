@@ -33,6 +33,8 @@ RUN yarn add webpack webpack-cli
 RUN mkdir /refugeexperiences
 WORKDIR /refugeexperiences
 COPY . .
+COPY setup/entry /refugeexperiences/setup/entry
+RUN chmod +x /refugeexperiences/setup/entry
 
 RUN bundle install
 
