@@ -12,10 +12,11 @@
         / Collect the nav links, forms, and other content for toggling
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
           %ul.nav.navbar-nav.navbar-right
-            %li= link_to t('.submit-a-new-experience-hyperlink-label'), new_experience_path
             %li= link_to t('.about-hyperlink-label'), page_path('about')
+            %li= link_to t('.submit-a-new-experience-hyperlink-label'), new_experience_path
+            %li= link_to "Map", experiences_path('view'=>"map","lat"=> 39.8097343,"long"=> -98.5556199, "zoom"=> 3)
             %li= link_to t('.contact-hyperlink-label'), contact_path
-            %li= link_to "Privacy", '/privacy'
+            %li= link_to "Privacy", page_path('privacy')
             //%li.dropdown
             //  %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
             //    = "Pages"
