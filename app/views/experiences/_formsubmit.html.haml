@@ -2,10 +2,10 @@
 
 = simple_form_for @experience, :url => experiences_path, :method => :post, html: {class: 'submit-new-bathroom-form form-vertical'} do |f|
   %h5= t('experience.required')
-  .clearfix
-    %button.btn.btn-light-purple.guess-btn{:type => "button", :value => t('experience.guess_location')}
-      = t('experience.guess_location')
-      %i.fa.fa-refresh.fa-spin
+  //.clearfix
+  //  %button.btn.btn-light-purple.guess-btn{:type => "button", :value => t('experience.guess_location')}
+  //    = t('experience.guess_location')
+  //    %i.fa.fa-refresh.fa-spin
 
   / Add map for preview
   #mapArea.hidden{ data: { latitude: 38.904735, longitude: -77.033812 } }
@@ -54,14 +54,14 @@
     collection: [ "My organization had to terminate a program that it offered to beneficiaries", "My organization had to furlough or terminate one or more paid positions", "My organization had to close its doors (temporarily or permanently)", "I am no longer employed by my organization", "I had to accept  a different job within my organization", "I am no longer employed by the federal government", "I or my organization must respond to an audit or investigation", "I am no longer receiving benefits that I had been receiving on an ongoing basis", "Other", ]
   %br  
   %h3 Debug Immediate Results Checkboxes
-  %div.debug{ style: "border: 2px dashed red; padding: 10px; margin-bottom: 20px;" }
-    %p For debugging: forcing the checkboxes to be visible.
+  %div.debug-container{ style: "border: 2px dashed blue; padding: 10px; margin: 20px 0;" }
     = f.input :immediate_results, 
-      label: "As an immediate result of the federal action, what happened? (check all that apply)",
+      label: "As an immediate result of the federal action, what happened? (Debug View)", 
       as: :check_boxes, 
-      collection: [ "Action Option 1", "Action Option 2", "Action Option 3"],
-      input_html: { style: "display: block !important; background: #fff !important; color: #000 !important;" },
-      label_html: { style: "display: block !important; background: #fff !important; color: #000 !important;" }
+      collection: [ "I am no longer employed by my organization", "Other action" ],
+      input_html: { style: "display: inline-block !important; font-size: 16px !important; color: black !important; background: yellow !important;" },
+      label_html: { style: "display: inline-block !important; font-size: 16px !important; color: black !important; background: yellow !important; border: 1px solid red !important; padding: 2px 4px;" }
+
   %p My story needs to be heard by others.
   = f.input :experience_details, 
     label: "Please describe the details of your experience", 
@@ -81,6 +81,6 @@
     .g-recaptcha{'data-sitekey' => "#{ENV['RECAPTCHA_SITE_KEY']}"}
 
   / Click to preview location
-  %button{type: 'button', class: 'preview-btn linkbutton'}
-    = t('experience.preview')
+  //%button{type: 'button', class: 'preview-btn linkbutton'}
+  //  = t('experience.preview')
   = f.button :submit, t('experience.restsubmit'), :class => "linkbutton"

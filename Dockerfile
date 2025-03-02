@@ -27,7 +27,7 @@ COPY --from=node-base /usr/local/ /usr/local/
 
 # Verify installations (prints versions during build)
 RUN node -v && npm -v && yarn -v
-RUN yarn add webpack webpack-cli
+
 
 # Create and set working directory
 RUN mkdir /refugeexperiences
@@ -40,7 +40,12 @@ RUN bundle install
 
 # Copy and install Node.js packages with Yarn
 COPY package.json yarn.lock /refugeexperiences/
+
+ENV NODE_OPTIONS=--openssl-legacy-provider
 RUN yarn install --pure-lockfile && yarn cache clean
+# Update Browserslist database to remove warnings
+RUN npx update-browserslist-db@latest --force
+
 
 # Copy the entrypoint script and ensure it is executable
 COPY entrypoint.sh /usr/bin/entrypoint.sh

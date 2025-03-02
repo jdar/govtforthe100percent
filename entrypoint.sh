@@ -5,8 +5,8 @@ set -e
 rm -f /refugeexperiences/tmp/pids/server.pid
 
 # Compile Webpack assets
-#echo "Compiling Webpack assets..."
-#bundle exec rails webpacker:compile
+echo "Compiling Webpack assets..."
+bundle exec rails webpacker:compile
 
 # Then execute the container’s main process (what's set as CMD).
 exec "$@"

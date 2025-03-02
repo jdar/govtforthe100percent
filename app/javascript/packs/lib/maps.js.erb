@@ -10,7 +10,7 @@ const showMarkerImage = "<%= helpers.image_path('show-icon.png') %>";
 let map;
 let lastOpenedInfoWindow;
 
-function initMap(x, y, image, draggable, callback){
+function initMap(x, y, z, image, draggable, callback){
   image = typeof image !== 'undefined' ? image : currentLocationImage;
 
   // Draggable defaults to false
@@ -18,9 +18,12 @@ function initMap(x, y, image, draggable, callback){
 
   //init map
   var mapOptions = {
-    zoom: 15,
+    zoom: parseInt(z, 10) || 3,
     center: new google.maps.LatLng(x, y)
   };
+  if(y == '-98.5556199'){
+    mapOptions.zoom = 4;
+  }
 
   map = new google.maps.Map(document.getElementById('mapArea'),
       mapOptions);
@@ -198,13 +201,13 @@ function guessPosition (coords, callback) {
 
 export const Maps = {
   reloadMap: (map) => {
-    initMap(map.dataset.latitude, map.dataset.longitude, showMarkerImage);
+    initMap(map.dataset.latitude, map.dataset.longitude, map.dataset.zoom, showMarkerImage);
   },
   reloadDraggable: (map, callback) => {
-    initMap(map.dataset.latitude, map.dataset.longitude, showMarkerImage, true, callback);
+    initMap(map.dataset.latitude, map.dataset.longitude, map.dataset.zoom, showMarkerImage, true, callback);
   },
-  loadMapWithPoints: (lat, long, points) => {
-    initMap(lat, long);
+  loadMapWithPoints: (lat, long, zoom, points) => {
+    initMap(lat, long, zoom);
 
     for (const [i, point] of points.entries()) {
       setPoint(point, i + 1);
@@ -215,6 +218,6 @@ export const Maps = {
 $(function(){
   let mapArea = $('#mapArea');
   if(mapArea.length > 0) {
-    initMap(mapArea.data('latitude'), mapArea.data('longitude'), showMarkerImage);
+    initMap(mapArea.data('latitude'), mapArea.data('longitude'), mapArea.data('zoom'), showMarkerImage);
   }
 });
