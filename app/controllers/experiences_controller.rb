@@ -1,4 +1,5 @@
 require_relative '../helpers/recaptcha_helper'
+require_relative 'zip_lookup_controller'
 
 # rubocop:disable Metrics/ClassLength
 class ExperiencesController < ApplicationController
@@ -44,10 +45,12 @@ class ExperiencesController < ApplicationController
 
     # Verify recaptcha code
     recaptcha_response = params['g-recaptcha-response']
-    unless RecaptchaHelper.valid_token? recaptcha_response
-      flash.now[:error] = I18n.t('helpers.reCAPTCHA.failed')
-      render 'new'
-      return
+    if Rails.env.production?
+      unless RecaptchaHelper.valid_token? recaptcha_response
+        flash.now[:error] = I18n.t('helpers.reCAPTCHA.failed')
+        render 'new'
+        return
+      end
     end
 
     @experience = SaveExperience.new(@experience).call
@@ -132,6 +135,17 @@ class ExperiencesController < ApplicationController
   # rubocop:disable Metrics/MethodLength
   def permitted_params
     params.require(:experience).permit(
+      :zip_code,
+      :federal_agency,
+      :agency_website, 
+      :immediate_results, 
+      :experience,
+      :experience_details,
+      :open_to_contact,
+      :contact_name,
+      :contact_email,
+      :contact_phone,
+
       :name,
       :street,
       :city,

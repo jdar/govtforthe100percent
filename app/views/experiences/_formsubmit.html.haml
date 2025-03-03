@@ -156,4 +156,19 @@
       document.getElementById('experience_contact_phone').value = '555-123-4567';
       document.getElementById('experience_zip_code').value = '20004';
     }
+
+    console.log("load fired. Autocomplete instance:", $.fn.autocomplete);
+    $('.agency-autocomplete').autocomplete({
+      source: function(request, response) {
+        $.ajax({
+          url: $('.agency-autocomplete').data('autocompleteUrl'),
+          dataType: 'json',
+          data: { term: request.term },
+          success: function(data) {
+            response(data);
+          }
+        });
+      },
+      minLength: 2
+    });
   });

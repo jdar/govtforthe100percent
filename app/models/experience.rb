@@ -30,7 +30,8 @@ class Experience < ApplicationRecord
   )
 
   #validates :name, :street, :city, :state, presence: true
-  validates :zip_code, :federal_agency, :agency_website, :experience, :immediate_results, :experience_details, :open_to_contact, presence: true
+  validates :zip_code, :federal_agency, :agency_website, :experience, :immediate_results, :experience_details,  presence: true, string: true
+  #:open_to_contact,
 
   geocoded_by :full_address
 
@@ -46,7 +47,9 @@ class Experience < ApplicationRecord
   end
 
   rakismet_attrs content: proc {
-    zip_code + federal_agency + agency_website + experience + immediate_results + experience_details
+    #zip_code + federal_agency + agency_website + experience + immediate_results + experience_details
+    #check permitted attrs in controller, if null
+    [zip_code, federal_agency, agency_website, experience, immediate_results, experience_details].map(&:to_s).join(" ")
   }
 
   after_validation :perform_geocoding

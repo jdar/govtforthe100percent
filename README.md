@@ -21,6 +21,9 @@ heroku container:release web --app gft100p
 
 # Run migrations
 heroku run rails db:migrate --app gft100p
+
+rails runner "AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')"
+docker-compose run --rm --entrypoint /bin/sh web -c "cd /refugeexperiences && bundle exec rails runner \"AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')\""
 ```
 
 # RUN LOCALLY:
