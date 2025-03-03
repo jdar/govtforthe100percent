@@ -177,6 +177,25 @@
           }
         });
       },
-      minLength: 2
-    });
+      minLength: 2,
+      focus: function(event, ui) {
+        // Prevent default behavior so that the input is not auto-populated with a partial value
+        event.preventDefault();
+        $(this).val(ui.item.label);
+      },
+      select: function(event, ui) {
+        document.getElementById('experience_federal_agency').value = ui.item["0"];
+        document.getElementById('experience_agency_website').value = ui.item["1"];
+        // Execute any additional logic if needed
+        return false; // Prevent default behavior
+      }
+    }).data('ui-autocomplete')._renderItem = function(ul, item) {
+      // Customize how the item appears in the list.
+      // For instance, display a custom property along with the original label.
+      var customHTML = '<div>' + item["0"]+ '</div>';
+      return $("<li>")
+        .append(customHTML)
+        .appendTo(ul)
+        .data("ui-autocomplete-item", item);
+    };
   });
