@@ -9,30 +9,20 @@
       .btn-group{role: "group"}
         = link_to experience_path(experience: { upvote: true }),
                     method: 'put' do
-          %button.btn.btn-lg.btn-success
-            %i.fa.fa-thumbs-up
-            = t('.thumbs-up-button-label')
-
-        = link_to experience_path(experience: { downvote: true }),
-                    method: 'put' do
           %button.btn.btn-lg.btn-danger
             %i.fa.fa-thumbs-down
             = t('.thumbs-down-button-label')
   .row.headroom
     .col-xs-12
-
       %p
-        %strong #{t('experience.directions')}:
-        = @experience.directions
-      %p
-        %strong #{t('experience.comments')}:
-        = @experience.comment
+        %strong
+          = @experience.open_to_contact? ? "Open to be contacted" : "Not open to contact."
       %p= link_to t('experience.edit.editlisting'), new_experience_path(id: @experience.id, experience_name: @experience.name, edit_id: @experience.edit_id)
   .row
     .col-xs-12
       #map
         %div#mapArea{ data: { latitude: @experience.latitude, longitude: @experience.longitude } }
       %hr
-  .row
-    .col-xs-12
-      = render partial: 'layouts/disqus_tag', locals: { identifier: "experience-#{@experience.id}", title: @experience.name, url: request.original_url }
+  //.row
+  //  .col-xs-12
+  //    = render partial: 'layouts/disqus_tag', locals: { identifier: "experience-#{@experience.id}", title: @experience.name, url: request.original_url }

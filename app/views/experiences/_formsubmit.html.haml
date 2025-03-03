@@ -49,7 +49,7 @@
     prompt: "Select one", 
     required: true
   %br  
-  = f.input :immediate_results, as: :hidden, input_html: { id: 'immediate_results_hidden' }
+  = f.input :immediate_results, as: :hidden
   %p As an immediate result of the federal action
   %div#immediate_results_chips.filter-chips
     - ["I am no longer employed by my organization", "My rights were violated", "I was discriminated against", "Other"].each do |option|
@@ -62,9 +62,10 @@
     required: true, 
     input_html: { rows: 5, class: "span6" }
   %hint (Please describe the details of your experience, including the purpose of your job or program; the reason for the agency (in)action, cancellation or termination, if known; and the effect(s) of the status change on your organization, you, or others.) 
-
+  %br
+  %br
   %p I am open to being contacted privately if someone wants to discuss the details of my experience with me.
-  = f.input :open_to_contact, as: :hidden, input_html: { id: 'open_to_contact_hidden' }
+  = f.input :open_to_contact, as: :hidden
   %div#open_to_contact_chips.filter-chips
     %span.chip{ data: { value: "true" } } Yes
     %span.chip{ data: { value: "false" } } No
@@ -117,7 +118,7 @@
   document.addEventListener('DOMContentLoaded', function() {
 
     // Immediate Results - multi-select chips
-    var irHidden = document.getElementById('immediate_results_hidden');
+    var irHidden = document.getElementById('experience_immediate_results');
     var irChips = document.querySelectorAll('#immediate_results_chips .chip');
     var irSelected = [];
     irChips.forEach(function(chip) {
@@ -135,7 +136,7 @@
     });
 
     // Open to Contact - single select chips
-    var otcHidden = document.getElementById('open_to_contact_hidden');
+    var otcHidden = document.getElementById('experience_open_to_contact');
     var otcChips = document.querySelectorAll('#open_to_contact_chips .chip');
     otcChips.forEach(function(chip) {
       chip.addEventListener('click', function() {
@@ -146,11 +147,18 @@
         otcHidden.value = chip.getAttribute('data-value');
       });
     });
+    otcChips[1].classList.add('selected');
+    otcHidden.value = otcChips[1].getAttribute('data-value');
 
 
     const urlParams = new URLSearchParams(window.location.search);
     
     if (urlParams.get('test') === 'true') {
+      document.getElementById('experience_federal_agency').value = 'USAID';
+      document.getElementById('experience_agency_website').value = 'https://oig.usaid.gov';
+      document.getElementById('experience_experience').value = 'Other';
+      document.getElementById('experience_experience_details').value = 'Testing';
+      document.getElementById('experience_immediate_results').value = 'Other';
       document.getElementById('experience_contact_name').value = 'John Doe';
       document.getElementById('experience_contact_email').value = 'johndoe@example.com';
       document.getElementById('experience_contact_phone').value = '555-123-4567';

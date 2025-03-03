@@ -7,18 +7,12 @@
   .listItemImage
     / image tag goes here
   .itemInfo
-    .itemName= link_to_unless_current(experience.name.titleize, experience)
-    .itemStreet="#{experience.street}, #{experience.city}, #{experience.state}"
-    - if experience.rated?
-      - rating_class_name = case RatingLevel.for_experience(experience)
-      - when RatingLevel.green  then 'greenRating'
-      - when RatingLevel.yellow then 'yellowRating'
-      - when RatingLevel.red    then 'redRating'
-      - else ''
-      %div{:class => "itemRating #{rating_class_name}"}
-        = t('experience.rating.positive', percentage: experience.rating_percentage.round)
-    - else
-      .itemRating= t('experience.rating.unrated')
+    .itemName= link_to_unless_current(experience.experience.titleize, experience)
+    .itemStreet="#{experience.city}, #{experience.state}, #{experience.zip_code}"
+    .itemStreet= link_to_unless_current(experience.experience_details, experience)
+    .itemStreet= link_to(experience.federal_agency, experience.agency_website)
+    %br
+    .itemStreet= experience.experience_details
 
   .itemExtraInfo
     .itemDistance
@@ -29,12 +23,12 @@
         = miles_to_kilometers(experience.distance).round(2)
         = t("experience.distance.kilometers")
     .itemIcons
-      - if experience.unisex?
-        .unisexExperience{:title => t("experience.type.unisex")}
-          %i.fa.fa-transgender-alt.fa-2x
-      - if experience.accessible?
-        .ADAExperience{:title => t("experience.accessible")}
-          %i.fa.fa-wheelchair.fa-2x
-      - if experience.changing_table?
-        .changingTable{:title => t("experience.changing_table")}
-          %i.fa.fa-child.fa-2x
+      //  - if experience.unisex?
+      //    .unisexExperience{:title => t("experience.type.unisex")}
+      //      %i.fa.fa-transgender-alt.fa-2x
+      - if experience.open_to_contact?
+        .ADAExperience{:title => "Open to contact"}
+          %i.fa.fa-person.fa-2x
+      //  - if experience.changing_table?
+      //    .changingTable{:title => t("experience.changing_table")}
+      //      %i.fa.fa-child.fa-2x

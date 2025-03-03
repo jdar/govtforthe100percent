@@ -30,8 +30,10 @@ class Experience < ApplicationRecord
   )
 
   #validates :name, :street, :city, :state, presence: true
-  validates :zip_code, :federal_agency, :agency_website, :experience, :immediate_results, :experience_details,  presence: true, string: true
+  validates :zip_code, :federal_agency, :agency_website, :experience,  :experience_details,  presence: true, string: true
+  #:immediate_results,
   #:open_to_contact,
+
 
   geocoded_by :full_address
 
@@ -47,12 +49,13 @@ class Experience < ApplicationRecord
   end
 
   rakismet_attrs content: proc {
-    #zip_code + federal_agency + agency_website + experience + immediate_results + experience_details
     #check permitted attrs in controller, if null
-    [zip_code, federal_agency, agency_website, experience, immediate_results, experience_details].map(&:to_s).join(" ")
+    #[zip_code, federal_agency, agency_website, experience, immediate_results, experience_details].map(&:to_s).join(" ")
+    [zip_code, federal_agency, agency_website, experience, experience_details].map(&:to_s).join(" ")
   }
 
-  after_validation :perform_geocoding
+  #after_validation :perform_geocoding
+  after_validation :populate_from_zip_properties
   after_find :strip_slashes
 
   scope :current, lambda {
@@ -94,9 +97,10 @@ class Experience < ApplicationRecord
 
   def strip_slashes
     #%w[name street city state comment directions].each do |field|
-    %w[zip_code federal_agency agency_website experience immediate_results experience_details open_to_contact].each do |field|
+    %w[zip_code federal_agency agency_website experience immediate_results experience_details ].each do |field|
       attributes[field].try(:gsub!, "\\'", "'")
     end
+    #TODO: search by open_to_contact
   end
 
   def perform_geocoding
@@ -105,4 +109,18 @@ class Experience < ApplicationRecord
 
     geocode
   end
+  def populate_from_zip_properties
+    return true if Rails.env.test?
+    return true if ENV["SEEDING_DONT_GEOCODE"]
+    zip_properties = AppConstants::ZIP_LOOKUP[zip_code]
+    self.state = zip_properties["State"]
+    self.city = zip_properties['City'] || 'Rural'
+    self.latitude = zip_properties["Latitude"]
+    self.longitude = zip_properties["Longitude"]
+  end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["accessible", "agency_website", "approved", "changing_table", "city", "comment", "contact_email", "contact_name", "contact_phone", "country", "created_at", "directions", "downvote", "edit_id", "experience", "experience_details", "federal_agency", "id", "id_value", "immediate_results", "latitude", "longitude", "name", "open_to_contact", "state", "street", "unisex", "updated_at", "upvote", "zip_code"]
+  end
+
 end

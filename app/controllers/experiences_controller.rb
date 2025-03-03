@@ -1,5 +1,4 @@
 require_relative '../helpers/recaptcha_helper'
-require_relative 'zip_lookup_controller'
 
 # rubocop:disable Metrics/ClassLength
 class ExperiencesController < ApplicationController
@@ -121,10 +120,10 @@ class ExperiencesController < ApplicationController
   def display_errors
     if @experience.errors.any?
       @experience.errors.each do
-        flash[:alert] = I18n.t('experience.flash.field')
+        flash[:alert] = I18n.t('experience.flash.field') + @experience.errors.to_json
       end
     else
-      flash[:alert] = I18n.t('experience.flash.unexpected')
+      flash[:alert] = I18n.t('experience.flash.unexpected')+ @experience.errors.to_json
     end
   end
 
