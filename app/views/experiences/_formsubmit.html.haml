@@ -48,19 +48,12 @@
     collection: [ "Termination of a federal program, contract, or grant that funded me or the organization I work for", "Indefinite withholding of money for a federal program, contract, or grant", "Termination of my job as a federal employee", "Investigation of me, my organization, or my federally-funded program or contract", "Loss of benefits provided directly for the federal government", "Loss of benefits provided through an entity or organization receiving federal funds", "Termination of my job because a White House policy has forbidden or denounced the law necessitating my position ", "Other" ], 
     prompt: "Select one", 
     required: true
-  = f.input :immediate_results, 
-    label: "As an immediate result of the federal action", 
-    as: :check_boxes, 
-    collection: [ "My organization had to terminate a program that it offered to beneficiaries", "My organization had to furlough or terminate one or more paid positions", "My organization had to close its doors (temporarily or permanently)", "I am no longer employed by my organization", "I had to accept  a different job within my organization", "I am no longer employed by the federal government", "I or my organization must respond to an audit or investigation", "I am no longer receiving benefits that I had been receiving on an ongoing basis", "Other", ]
   %br  
-  %h3 Debug Immediate Results Checkboxes
-  %div.debug-container{ style: "border: 2px dashed blue; padding: 10px; margin: 20px 0;" }
-    = f.input :immediate_results, 
-      label: "As an immediate result of the federal action, what happened? (Debug View)", 
-      as: :check_boxes, 
-      collection: [ "I am no longer employed by my organization", "Other action" ],
-      input_html: { style: "display: inline-block !important; font-size: 16px !important; color: black !important; background: yellow !important;" },
-      label_html: { style: "display: inline-block !important; font-size: 16px !important; color: black !important; background: yellow !important; border: 1px solid red !important; padding: 2px 4px;" }
+  = f.input :immediate_results, as: :hidden, input_html: { id: 'immediate_results_hidden' }
+  %p As an immediate result of the federal action
+  %div#immediate_results_chips.filter-chips
+    - ["I am no longer employed by my organization", "My rights were violated", "I was discriminated against", "Other"].each do |option|
+      %span.chip{ data: { value: option } }= option
 
   %p My story needs to be heard by others.
   = f.input :experience_details, 
@@ -69,13 +62,19 @@
     required: true, 
     input_html: { rows: 5, class: "span6" }
   %hint (Please describe the details of your experience, including the purpose of your job or program; the reason for the agency (in)action, cancellation or termination, if known; and the effect(s) of the status change on your organization, you, or others.) 
-  = f.input :open_to_contact, 
-    label: "I am open to being contacted privately if someone wants to discuss the details of my experience with me", 
-    as: :boolean
+
+  %p I am open to being contacted privately if someone wants to discuss the details of my experience with me.
+  = f.input :open_to_contact, as: :hidden, input_html: { id: 'open_to_contact_hidden' }
+  %div#open_to_contact_chips.filter-chips
+    %span.chip{ data: { value: "true" } } Yes
+    %span.chip{ data: { value: "false" } } No
+
+
   
   = f.input :contact_name, label: "Name", required: false
   = f.input :contact_email, label: "Email", required: false
   = f.input :contact_phone, label: "Phone number", required: false 
+
 
   .form-group
     .g-recaptcha{'data-sitekey' => "#{ENV['RECAPTCHA_SITE_KEY']}"}
@@ -84,3 +83,77 @@
   //%button{type: 'button', class: 'preview-btn linkbutton'}
   //  = t('experience.preview')
   = f.button :submit, t('experience.restsubmit'), :class => "linkbutton"
+
+:css
+  .filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .chip {
+    padding: 8px 12px;
+    border: 2px solid #0044cc;
+    background-color: #AFD6FFFF;
+    color: white;
+    border-radius: 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+  }
+
+  .chip:hover {
+    background-color: #0056b3;
+    border-color: #003c99;
+  }
+
+  .chip.selected {
+    background-color: #0044cc;
+    border-color: #002a80;
+    font-weight: bold;
+  }
+
+:javascript
+  document.addEventListener('DOMContentLoaded', function() {
+
+    // Immediate Results - multi-select chips
+    var irHidden = document.getElementById('immediate_results_hidden');
+    var irChips = document.querySelectorAll('#immediate_results_chips .chip');
+    var irSelected = [];
+    irChips.forEach(function(chip) {
+      chip.addEventListener('click', function() {
+        chip.classList.toggle('selected');
+        var value = chip.getAttribute('data-value');
+        if (chip.classList.contains('selected')) {
+          irSelected.push(value);
+        } else {
+          irSelected = irSelected.filter(function(item) { return item !== value; });
+        }
+        // Store as JSON string or comma-separated list, as preferred.
+        irHidden.value = JSON.stringify(irSelected);
+      });
+    });
+
+    // Open to Contact - single select chips
+    var otcHidden = document.getElementById('open_to_contact_hidden');
+    var otcChips = document.querySelectorAll('#open_to_contact_chips .chip');
+    otcChips.forEach(function(chip) {
+      chip.addEventListener('click', function() {
+        otcChips.forEach(function(otherChip) {
+          otherChip.classList.remove('selected');
+        });
+        chip.classList.add('selected');
+        otcHidden.value = chip.getAttribute('data-value');
+      });
+    });
+
+
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    if (urlParams.get('test') === 'true') {
+      document.getElementById('experience_contact_name').value = 'John Doe';
+      document.getElementById('experience_contact_email').value = 'johndoe@example.com';
+      document.getElementById('experience_contact_phone').value = '555-123-4567';
+      document.getElementById('experience_zip_code').value = '20004';
+    }
+  });
