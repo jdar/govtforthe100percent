@@ -29,6 +29,14 @@ heroku run rails db:migrate --app gft100p
 docker-compose down && docker-compose up --build
 ```
 
+# API
+
+Swagger page exists for 'experiences'
+
+Additionally, for form purposes, Agencies and Zip Code lookups exist. 
+
+Example:
+`/zip_lookup?zip_code=20004`
 
 
 # LINKS:

@@ -5,6 +5,7 @@ require_relative '../app/controllers/api/base'
 
 Rails.application.routes.draw do
   get 'agencies', to: 'agencies#index', defaults: { format: :json }
+  get 'zip_lookup', to: 'zip_lookup#get', defaults: { format: :json }
 
   devise_for :admin_users, ActiveAdmin::Devise.config
     ActiveAdmin.routes(self)
