@@ -115,6 +115,7 @@ class Experience < ApplicationRecord
     zip_properties = AppConstants::ZIP_LOOKUP[zip_code]
     self.state = zip_properties["State"]
     self.city = zip_properties['City'] || 'Rural'
+    self.country = ['PR'].include?(zip_properties['State']) ? zip_properties['State'] : "United States"
     self.latitude = zip_properties["Latitude"]
     self.longitude = zip_properties["Longitude"]
   end
