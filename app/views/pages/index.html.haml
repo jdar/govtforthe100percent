@@ -19,14 +19,14 @@
           = t('.add-experience-button-label')
           %i.fa.fa-plus-square-o.fa-2x
   .row.even-more-headroom
-    .col-xs-6.col-sm-3.col-sm-offset-3
-      .splash-text-container.centered-text
-        = link_to image_tag("map.png", role: "img", alt: "Map"), "http://map"
-    .col-xs-6.col-sm-3
-      .splash-text-container.centered-text
-        = link_to "http://submittal.com" do
-          = image_tag("submittal.png", alt: "Submit")
-          = "Submitted anonymously on March 1, 2025"
+    //.col-xs-6.col-sm-3.col-sm-offset-3
+    .col-xs-12.col-sm-9.col-sm-offset-2{style: "background-color: white"}
+      .col-xs-3.col-sm-4
+        #map
+          %div#mapArea{ data: { latitude: @experience.latitude, longitude: @experience.longitude } }
+      .col-xs-9.col-sm-6
+        = render @experience, partial: "experiences/experience" 
+        = "Submitted anonymously on #{@experience.created_at.strftime("%B %d, %Y")}"
   .row.more-headroom
     .col-xs-12.col-sm-6.col-sm-offset-3
       = button_to experiences_path, method: :get, class: "btn btn-lg btn-purple splash-add-experience-btn" do
