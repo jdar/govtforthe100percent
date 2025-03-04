@@ -10,7 +10,7 @@ body {
   //background: image-url('dc_banner.jpg') no-repeat 50% 50% fixed;
 }
 
-.splash-background {
+.splash-background-DISABLED {
   background: image-url('rosegarden_with_bars.jpg') no-repeat 50% 50% fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -18,10 +18,12 @@ body {
   background-size: cover;
   min-width: 100%;
   min-height: 100%;
+}
 
+.splash-background {
   nav {
-    background: rgb(0, 0, 0);
     background: rgba(0, 0, 0, 0.7);
+    width: 100% !important;
     @include border-radius(5px);
   }
 

@@ -2,6 +2,8 @@
   %h1= t('.request-edit-for-experience', experience_name: @contact.experience_name)
 - else
   %h1= t('.contact-title')
+%p
+  Questions or comments about this site or its mission?
 = simple_form_for @contact, html: {class: 'form-vertical headroom'} do |f|
   %p
   = f.input :name, :required => true
@@ -15,3 +17,9 @@
     .g-recaptcha{'data-sitekey' => "#{ENV['RECAPTCHA_SITE_KEY']}"}
   .form-actions
     = f.button :submit, :class=> "linkbutton"
+
+:javascript
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('[title="required"]').forEach(element => element.remove());
+  });
+

@@ -1,7 +1,7 @@
 %h1= t('experience.add_new')
 
 = simple_form_for @experience, :url => experiences_path, :method => :post, html: {class: 'submit-new-bathroom-form form-vertical'} do |f|
-  %h5= t('experience.required')
+  //%h5= t('experience.required')
   //.clearfix
   //  %button.btn.btn-light-purple.guess-btn{:type => "button", :value => t('experience.guess_location')}
   //    = t('experience.guess_location')
@@ -30,51 +30,63 @@
   //= f.input :comment, :placeholder => t('experience.comments_hint'), :as => :text, :required => false, :input_html => { :class => "span6" }
 
   = f.input :zip_code, 
-    label: "Zip code where I reside", 
+    label: "Zip code of my US residence:", 
     required: true, 
-    input_html: { pattern: "\\d{5}", maxlength: 5, minlength: 5, placeholder: "12345" }
+    input_html: { pattern: "\\d{5}", maxlength: 5, minlength: 5, placeholder: "12345", required: false }
   = f.input :federal_agency, 
-    label: "Federal agency involved in my experience", 
+    label: "Federal agency involved in my experience:", 
     required: true, 
     input_html: { class: 'agency-autocomplete', data: { autocomplete_url: agencies_path } }
   = f.input :agency_website, 
-    label: "Website of agency office or specific federal program featured in your experience", 
+    label: "Website of agency office or specific federal program featured in your experience:", 
     as: :url, 
     required: false, 
-    input_html: { placeholder: "https://oig.usaid.gov/", pattern: "https?://.+" }
+    input_html: { placeholder: "https://oig.usaid.gov/", pattern: "https?://.+", required: false }
   = f.input :experience, 
-    label: "My experience", 
+    label: "My experience:", 
     as: :select, 
     collection: [ "Termination of a federal program, contract, or grant that funded me or the organization I work for", "Indefinite withholding of money for a federal program, contract, or grant", "Termination of my job as a federal employee", "Investigation of me, my organization, or my federally-funded program or contract", "Loss of benefits provided directly for the federal government", "Loss of benefits provided through an entity or organization receiving federal funds", "Termination of my job because a White House policy has forbidden or denounced the law necessitating my position ", "Other" ], 
     prompt: "Select one", 
+    required: true,
+    input_html: { required: false }
+  %br  
+  = f.input :immediate_results,
+    label: "As an immediate result of the federal action:",
+    as: :select, 
+    collection: ["My organization had to terminate a program that it offered to beneficiaries", "My organization had to furlough or terminate one or more paid positions", "My organization had to close its doors (temporarily or permanently)", "I am no longer employed by my organization", "I had to accept  a different job within my organization", "I am no longer employed by the federal government", "I or my organization must respond to an audit or investigation", "I am no longer receiving benefits that I had been receiving on an ongoing basis", "Other",],
+    input_html: { multiple: true, size: 9, required: false  },
     required: true
   %br  
-  = f.input :immediate_results, as: :hidden
-  %p As an immediate result of the federal action
-  %div#immediate_results_chips.filter-chips
-    - ["I am no longer employed by my organization", "My rights were violated", "I was discriminated against", "Other"].each do |option|
-      %span.chip{ data: { value: option } }= option
-
-  %p My story needs to be heard by others.
+  .my-story-title My story needs to be heard by others.
+  %br
+  %strong Please describe the details of your experience:
+  %br
+  (Include the purpose of your job or program; the reason for the agency (in)action, cancellation or termination, if known; and the effect(s) of the status change on your organization, you, or others.)
   = f.input :experience_details, 
-    label: "Please describe the details of your experience", 
+    label: "", 
     as: :text, 
     required: true, 
-    input_html: { rows: 5, class: "span6" }
-  %hint (Please describe the details of your experience, including the purpose of your job or program; the reason for the agency (in)action, cancellation or termination, if known; and the effect(s) of the status change on your organization, you, or others.) 
+    input_html: { rows: 5, class: "span6",required: false, maxlength: 3500, id: "experience_details" }
+  %p#char-count 0/3500 characters
   %br
-  %br
-  %p I am open to being contacted privately if someone wants to discuss the details of my experience with me.
-  = f.input :open_to_contact, as: :hidden
-  %div#open_to_contact_chips.filter-chips
-    %span.chip{ data: { value: "true" } } Yes
-    %span.chip{ data: { value: "false" } } No
+  %fieldset
+    %legend{style: "font-size:20pt"} Open to Being Contacted:
+    %p I am open to being contacted privately if someone wants to discuss the details of my experience with me (e.g., media, congressman, legal team)
+    = f.input :open_to_contact, as: :hidden
+    %div#open_to_contact_chips.filter-chips
+      %span.chip{ data: { value: "true" } } Yes
+      %span.chip{ data: { value: "false" } } No
 
 
-  
-  = f.input :contact_name, label: "Name", required: false
-  = f.input :contact_email, label: "Email", required: false
-  = f.input :contact_phone, label: "Phone number", required: false 
+    %br
+    %br
+    = f.input :contact_name, label: "Name (optional):", required: false,
+      input_html: { required: false }
+    = f.input :contact_email, label: "Email (optional):", required: false,
+      input_html: { required: false }
+    = f.input :contact_phone, label: "Phone number (optional):", required: false,
+      input_html: { required: false, class: "phone-input", type: "tel", maxlength: 14, id: "phone_number" }
+
 
 
   .form-group
@@ -86,6 +98,10 @@
   = f.button :submit, t('experience.restsubmit'), :class => "linkbutton"
 
 :css
+  .my-story-title{
+    font-size: 20pt;
+    font-weight: bold;
+  }
   .filter-chips {
     display: flex;
     flex-wrap: wrap;
@@ -114,8 +130,39 @@
     font-weight: bold;
   }
 
+  fieldset {
+      border: 2px solid #007BFF; /* Blue border */
+      border-radius: 8px; /* Rounded corners */
+      padding: 15px;
+      margin: 20px 0;
+      background-color: #f9f9f9; /* Light gray background */
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+
+  legend {
+      font-size: 1.2rem; /* Slightly larger text */
+      font-weight: bold;
+      color: #007BFF; /* Blue text */
+      padding: 0 10px; /* Adds padding around the text */
+      background-color: white;
+      border-radius: 5px;
+  }
+
+
 :javascript
   document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('[title="required"]').forEach(element => element.remove());
+
+    const textarea = document.getElementById("experience_details");
+    const charCount = document.getElementById("char-count");
+    const maxChars = 3500;
+
+    function updateCharCount() {
+      charCount.textContent = `${textarea.value.length}/${maxChars} characters`;
+    }
+
+    textarea.addEventListener("input", updateCharCount);
+    updateCharCount(); // Initialize count on page load
 
     // Immediate Results - multi-select chips
     var irHidden = document.getElementById('experience_immediate_results');
@@ -198,4 +245,26 @@
         .appendTo(ul)
         .data("ui-autocomplete-item", item);
     };
+
+    const phoneInput = document.getElementById("phone_number");
+    phoneInput.addEventListener("input", function(event) {
+      let value = phoneInput.value.replace(/\D/g, ""); // Remove non-numeric characters
+
+      if (value.length > 10) {
+        value = value.slice(0, 10); // Limit to 10 digits
+      }
+
+      let formattedValue = value;
+
+      if (value.length > 6) {
+        formattedValue = `(${value.slice(0,3)}) ${value.slice(3,6)}-${value.slice(6)}`;
+      } else if (value.length > 3) {
+        formattedValue = `(${value.slice(0,3)}) ${value.slice(3)}`;
+      } else if (value.length > 0) {
+        formattedValue = `(${value}`;
+      }
+
+      phoneInput.value = formattedValue;
+    });
+
   });
