@@ -51,6 +51,11 @@ Rails.application.configure do
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
+  config.middleware.use Rack::Rewrite do
+    r301 %r{.*}, 'https://waybacktogovt.org$&', if: proc { |rack_env|
+      rack_env['HTTP_X_FORWARDED_PROTO'] != 'https'
+    }
+  end
 
   # Log to STDOUT by default
   config.logger = ActiveSupport::Logger.new(STDOUT)

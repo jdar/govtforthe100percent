@@ -1,9 +1,9 @@
 %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
-%title= content_for?(:title) ? yield(:title) : "[]"
-%meta{:content => content_for?(:description) ? yield(:description) : "Refuge Experiences", :name => "description"}/
+%title= content_for?(:title) ? yield(:title) : request.host
+%meta{:content => content_for?(:description) ? yield(:description) : "Way Back To Government", :name => "description"}/
 %meta{:content => "government, protest, journalism", :name => "keywords"}/
 %link{:href => "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css", :rel => "stylesheet", :name => "fontawesome"}/
-%meta{:content => "[].org", :name => "author"}/
+%meta{:content => request.host, :name => "author"}/
 %meta{:content => "initial-scale=1, maximum-scale=1", :name => "viewport"}/
 
 %script{:src => "https://maps.googleapis.com/maps/api/js?v=quarterly&libraries=places&key=AIzaSyDumes0Y6Uofc0ZMZkTFBKKUlFszMAeHKA"}

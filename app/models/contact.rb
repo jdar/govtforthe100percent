@@ -19,10 +19,12 @@ class Contact < MailForm::Base
   # in ActionMailer accepts.
   def headers
     {
-      subject: "[waybackTogovt] #{experience_id}",
+      subject: "[waybackTogovt] contact #{email} #{experience_id}",
       to: "contactform@waybacktogovt.org",
-      from: %("#{name}" <#{email}>), # :from overriden by google smtp config
-      reply_to: %("#{name}" <#{email}>)
+      from: %(noreply@waybacktogovt.org), # :from overriden by google smtp config
+      reply_to: %(noreply@waybacktogovt.org)
+      #from: %("#{name}" <#{email}>), # :from overriden by google smtp config
+      #reply_to: %("#{name}" <#{email}>)
     }
   end
 end
