@@ -17,10 +17,13 @@ class ContactsController < ApplicationController
 
     # Verify recaptcha code
     recaptcha_response = params['g-recaptcha-response']
+
+    if Rails.env.production?
     unless RecaptchaHelper.valid_token? recaptcha_response
       flash.now[:error] = I18n.t('helpers.reCAPTCHA.failed')
       render :new
       return
+    end
     end
 
     @contact.request = request
