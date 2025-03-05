@@ -30,7 +30,9 @@ class Experience < ApplicationRecord
   )
 
   #validates :name, :street, :city, :state, presence: true
-  validates :zip_code, :federal_agency, :agency_website, :experience, :immediate_results, :experience_details, presence: true, string: true
+  validates :federal_agency, :agency_website, :experience, :experience_details, presence: true, string: true
+  validates :zip_code, inclusion: { in: AppConstants::ZIP_LOOKUP.keys, message: " was not a known zipcode in US, PR, or outlying islands." }
+
   #,
   #:open_to_contact,
 
@@ -113,11 +115,13 @@ class Experience < ApplicationRecord
     return true if Rails.env.test?
     return true if ENV["SEEDING_DONT_GEOCODE"]
     zip_properties = AppConstants::ZIP_LOOKUP[zip_code]
-    self.state = zip_properties["State"]
-    self.city = zip_properties['City'] || 'Rural'
-    self.country = ['PR'].include?(zip_properties['State']) ? zip_properties['State'] : "United States"
-    self.latitude = zip_properties["Latitude"]
-    self.longitude = zip_properties["Longitude"]
+    if(zip_properties)
+      self.state = zip_properties["State"]
+      self.city = zip_properties['City'] || 'Rural'
+      self.country = ['PR'].include?(zip_properties['State']) ? zip_properties['State'] : "United States"
+      self.latitude = zip_properties["Latitude"]
+      self.longitude = zip_properties["Longitude"]
+    end
   end
 
   def self.ransackable_attributes(auth_object = nil)

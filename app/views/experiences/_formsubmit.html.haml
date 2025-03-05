@@ -216,11 +216,34 @@
     $('.agency-autocomplete').autocomplete({
       source: function(request, response) {
         $.ajax({
-          url: $('.agency-autocomplete').data('autocompleteUrl'),
-          dataType: 'json',
-          data: { term: request.term },
+          url: '/us_agencies.csv',
+          dataType: 'text',
           success: function(data) {
-            response(data);
+            var lines = data.split(/\r?\n/);
+            var headers = lines[0].split(',');
+            var agencyNameIndex = headers.indexOf('Agency Name');
+            var websiteIndex = headers.indexOf('Website');
+
+            var results = [];
+            for (var i = 1; i < lines.length; i++) {
+              var line = lines[i];
+              if (line.trim() === '') continue;
+              var values = line.split(',');
+
+              // Remove surrounding quotes from each field
+              var agencyName = values[agencyNameIndex].replace(/^"|"$/g, '');
+              var website = values[websiteIndex].replace(/^"|"$/g, '');
+
+              // Filter using a case-insensitive match on the agency name.
+              if (agencyName.toLowerCase().indexOf(request.term.toLowerCase()) !== -1) {
+                results.push({
+                  label: agencyName, // Display text in the autocomplete list
+                  value: agencyName, // Value to populate the input when selected
+                  website: website  // Additional data for further use
+                });
+              }
+            }
+            response(results);
           }
         });
       },
@@ -231,15 +254,15 @@
         $(this).val(ui.item.label);
       },
       select: function(event, ui) {
-        document.getElementById('experience_federal_agency').value = ui.item["0"];
-        document.getElementById('experience_agency_website').value = ui.item["1"];
+        document.getElementById('experience_federal_agency').value = ui.item.value;
+        document.getElementById('experience_agency_website').value = ui.item.website;
         // Execute any additional logic if needed
         return false; // Prevent default behavior
       }
     }).data('ui-autocomplete')._renderItem = function(ul, item) {
       // Customize how the item appears in the list.
       // For instance, display a custom property along with the original label.
-      var customHTML = '<div>' + item["0"]+ '</div>';
+      var customHTML = '<div>' + item.value+ '</div>';
       return $("<li>")
         .append(customHTML)
         .appendTo(ul)

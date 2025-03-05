@@ -137,14 +137,14 @@ class ExperiencesController < ApplicationController
       :zip_code,
       :federal_agency,
       :agency_website, 
-      :immediate_results, 
+      { immediate_results: [] },  # Allow array input
       :experience,
       :experience_details,
       :open_to_contact,
       :contact_name,
       :contact_email,
       :contact_phone,
-
+      
       :name,
       :street,
       :city,

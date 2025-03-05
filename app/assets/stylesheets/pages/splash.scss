@@ -66,10 +66,10 @@ body {
 
   .splash-text-container {
     @include border-radius(5px);
-    color: white;
-    background: rgb(0, 0, 0);
+    color: #11519B;
+    //background: rgb(0, 0, 0);
     /* fallback color */
-    background: rgba(0, 0, 0, 0.6);
+    //background: rgba(0, 0, 0, 0.6);
   }
 
   h1 {

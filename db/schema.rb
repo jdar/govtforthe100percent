@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_02_26_050657) do
+ActiveRecord::Schema[7.1].define(version: 2025_03_04_202018) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "unaccent"
@@ -69,7 +69,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_26_050657) do
     t.string "federal_agency", null: false
     t.string "agency_website"
     t.string "experience", null: false
-    t.string "immediate_results", default: [], array: true
+    t.text "immediate_results", default: [], array: true
     t.text "experience_details", null: false
     t.boolean "open_to_contact", default: false
     t.string "contact_name"

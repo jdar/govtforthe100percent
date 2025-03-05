@@ -11,6 +11,7 @@
     .itemStreet="#{experience.city}, #{experience.state}, #{experience.zip_code}"
     .itemStreet= link_to_unless_current(experience.experience_details, experience)
     .itemStreet= link_to(experience.federal_agency, experience.agency_website)
+    .itemStreet= experience.immediate_results.to_s
     %br
     .itemStreet= experience.experience_details
 
@@ -27,7 +28,7 @@
       //    .unisexExperience{:title => t("experience.type.unisex")}
       //      %i.fa.fa-transgender-alt.fa-2x
       - if experience.open_to_contact?
-        .ADAExperience{:title => "Open to contact"}
+        .ADAExperience{:title => "Open to Contact"}
           %i.fa.fa-person.fa-2x
       //  - if experience.changing_table?
       //    .changingTable{:title => t("experience.changing_table")}

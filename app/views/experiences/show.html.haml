@@ -7,11 +7,12 @@
   .row
     .col-xs-12
       .btn-group{role: "group"}
-        = link_to experience_path(experience: { upvote: true }),
+        = link_to experience_path(experience: { downvote: true }),
                     method: 'put' do
           %button.btn.btn-lg.btn-danger
             %i.fa.fa-thumbs-down
-            = t('.thumbs-down-button-label')
+            = "This affected me too"
+            //= t('.thumbs-down-button-label')
   .row.headroom
     .col-xs-12
       %p
