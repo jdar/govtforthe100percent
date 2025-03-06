@@ -2,7 +2,6 @@
 .itemInfo
   .itemName= link_to_unless_current(experience.experience.titleize, experience)
   .itemStreet="#{experience.city}, #{experience.state}, #{experience.zip_code}"
-  .itemStreet= link_to_unless_current(experience.experience_details, experience)
   .itemStreet= link_to(experience.federal_agency, experience.agency_website)
   - if immediate_results.any?
     .itemStreet 
