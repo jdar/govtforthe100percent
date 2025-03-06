@@ -2,6 +2,6 @@ class PagesController < ApplicationController
   include HighVoltage::StaticPage
   layout 'splash', only: [:index]
   def index
-    @experience = Experience.find(34) || Experience.first
+    @experience = Experience.where(id: 34).first || Experience.first
   end
 end
