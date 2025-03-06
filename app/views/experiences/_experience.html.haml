@@ -6,30 +6,4 @@
           data: { id: experience.id} }
   .listItemImage
     / image tag goes here
-  .itemInfo
-    .itemName= link_to_unless_current(experience.experience.titleize, experience)
-    .itemStreet="#{experience.city}, #{experience.state}, #{experience.zip_code}"
-    .itemStreet= link_to_unless_current(experience.experience_details, experience)
-    .itemStreet= link_to(experience.federal_agency, experience.agency_website)
-    .itemStreet= experience.immediate_results.to_s
-    %br
-    .itemStreet= experience.experience_details
-
-  .itemExtraInfo
-    .itemDistance
-      - if experience.respond_to?(:distance)
-        = experience.distance.round(2)
-        = t("experience.distance.miles")
-        \/
-        = miles_to_kilometers(experience.distance).round(2)
-        = t("experience.distance.kilometers")
-    .itemIcons
-      //  - if experience.unisex?
-      //    .unisexExperience{:title => t("experience.type.unisex")}
-      //      %i.fa.fa-transgender-alt.fa-2x
-      - if experience.open_to_contact?
-        .ADAExperience{:title => "Open to Contact"}
-          %i.fa.fa-person.fa-2x
-      //  - if experience.changing_table?
-      //    .changingTable{:title => t("experience.changing_table")}
-      //      %i.fa.fa-child.fa-2x
+  =render 'experience_body', experience: experience

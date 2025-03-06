@@ -1,7 +1,7 @@
 .row.headroom
   .col-xs-12
     .listItem.showPageItem{"data-id" => @experience.id}
-      = render partial: 'experiences/experience', locals: { experience: @experience }
+      = render partial: 'experiences/experience_body', locals: { experience: @experience }
 
 .showPageContent
   .row
