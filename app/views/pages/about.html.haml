@@ -5,7 +5,7 @@
   .text-padding.p-text-sizebump
     %section.about
       %h2 The Way Back to Government for the 100%.
-      %p Way Back to Government is a tool to raise awareness and record the cataclysmic changes occurring throughout the U.S.A’s federal government since January 20, 2025 – the day that Donald J. Trump took the oath of office as the 47th President of the United States.
+      %p!= "Way Back to Government is <strong>a tool to raise awareness and record</strong> the cataclysmic changes occurring throughout the U.S.A’s federal government since January 20, 2025 – the day that Donald J. Trump took the oath of office as the 47th President of the United States."
       %p This site collects the personal stories from individuals directly affected by the Trump Administration’s swift actions, which have altered the course of all federal agencies and dozens of domestic and foreign policy fronts. If you have experienced abrupt change in your benefits, employment, or another aspect of your livelihood since President Trump took office, please submit the details #{link_to 'here', '/experiences/new'}.
       %p By collecting these individual experiences, Way Back to Government aims to memorialize history as it is happening. Like the internet’s Wayback Machine, it will preserve the facts of the people and institutions on which America’s democracy has relied. In this way, the United States cannot ignore or deny the destabilization or extermination of the existing system of government that was designed to work for 100% of Americans.
       %p These collected histories serve as a reference to those government services that – as we are likely to learn the hard way – a stable democracy cannot do without. They will become the beacon guiding us to recollect the institutions of a democratic government that we will need to restore in order to protect open society and prosperous economy for all of us.
@@ -37,13 +37,16 @@
 
     .centered-text
       %p Join the movement: #peopledontforget
-    .centered-text
-      %a{ href: "https://www.linkedin.com/sharing/share-offsite/?url=#{CGI.escape('https://waybacktogovt.org?linkedin')}", target: "_blank", rel: "noopener noreferrer" }
-        %i.fab.fa-linkedin
-        Share on LinkedIn
-      %a{ href: "https://www.facebook.com/sharer/sharer.php?u=#{CGI.escape('https://waybacktogovt.org/?facebook')}", target: "_blank", rel: "noopener noreferrer" }
-        %i.fab.fa-facebook
-        Share on Facebook
+    %section.centered-text
+      %p 
+        %a{ href: "https://www.linkedin.com/sharing/share-offsite/?url=#{CGI.escape('https://waybacktogovt.org?linkedin')}", target: "_blank", rel: "noopener noreferrer" }
+          %i.fa.fa-linkedin
+          Share on LinkedIn
+      %p{style: 'color: rgba(0, 0, 0, 0);'}= '|  |  |'
+      %p 
+        %a{ href: "https://www.facebook.com/sharer/sharer.php?u=#{CGI.escape('https://waybacktogovt.org/?facebook')}", target: "_blank", rel: "noopener noreferrer" }
+          %i.fa.fa-facebook
+          Share on Facebook
 
 //    %section
 //      %p= "[TODO: social action buttons that populate pre-written text]"

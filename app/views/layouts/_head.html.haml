@@ -1,13 +1,13 @@
 %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
 %title= content_for?(:title) ? yield(:title) : request.host
-%meta{:content => content_for?(:description) ? yield(:description) : "Way Back To Government", :name => "description"}/
+%meta{:content => content_for?(:description) ? yield(:description) : "Way Back To Government.", :name => "description"}/
 %meta{:content => "government, protest, journalism", :name => "keywords"}/
 %link{:href => "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css", :rel => "stylesheet", :name => "fontawesome"}/
 %meta{:content => request.host, :name => "author"}/
 %meta{:content => "initial-scale=1, maximum-scale=1", :name => "viewport"}/
 
 //open-graph
-%meta{ property: "og:title", content: yield(:meta_title) || " Way back to Government" }
+%meta{ property: "og:title", content: yield(:meta_title) || "# Way back to Government #" }
 - doc = capture do
     ⚠️ Don’t let your experience be overlooked or erased. We cannot rebuild our democracy if it cannot be recalled. Your voice belongs in the record if you have lost benefits, been part of a program that has lost funded, or faced other abrupt changes in your life as a result of the new Trump administration. 
     🔗 Speak up, share your story: waybacktogovt.org

@@ -8,16 +8,52 @@ only screen and (min-resolution: 192dpi) {
 }
 
 // Screen Width-Related Rules
+@media only screen and (max-width: 967px),
+only screen and (max-device-width: 967px) {
+    .navbar-default .experienceLogo {
+        top: 8px;
+    }
+
+    .splash-content h1 {
+        font-weight: bold;
+        font-size: 45pt !important;
+        padding-bottom: 10px
+    }
+
+    .splash-content h3 {
+        font-size: 35pt !important;
+    }
+}
 
 @media only screen and (max-width: 767px),
 only screen and (max-device-width: 767px) {
     .navbar-default .experienceLogo {
         top: 8px;
     }
+
+    .splash-content h1 {
+        font-weight: bold;
+        font-size: 40pt !important;
+        padding-bottom: 10px
+    }
+
+    .splash-content h3 {
+        font-size: 30pt !important;
+    }
 }
 
 @media only screen and (max-width: 640px),
 only screen and (max-device-width: 640px) {
+
+    .splash-content h1 {
+        font-weight: bold;
+        font-size: 35pt !important;
+        padding-bottom: 10px
+    }
+
+    .splash-content h3 {
+        font-size: 25pt !important;
+    }
 
     main,
     main .container {
@@ -63,6 +99,17 @@ only screen and (max-device-width: 640px) {
 
 @media only screen and (max-width: 480px),
 only screen and (max-device-width: 480px) {
+
+    .splash-content h1 {
+        font-weight: bold;
+        font-size: 30pt !important;
+        padding-bottom: 10px
+    }
+
+    .splash-content h3 {
+        font-size: 18pt !important;
+    }
+
     .container {
         width: 100%;
     }
@@ -112,6 +159,16 @@ only screen and (max-device-width: 344px) {
     .nav-column {
         padding-left: 0;
         padding-right: 0;
+    }
+
+    .splash-content h1 {
+        font-weight: bold;
+        font-size: 40pt;
+        padding-bottom: 10px
+    }
+
+    .splash-content h3 {
+        font-size: 25pt;
     }
 }
 
