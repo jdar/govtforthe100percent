@@ -32,8 +32,8 @@
           = "Submitted #{@experience.open_to_contact ? '' : 'anonymously '}on #{@experience.created_at.strftime("%B %d, %Y")}"
   .row.more-headroom
     .col-xs-12.col-sm-6.col-sm-offset-3
-      = button_to experiences_path, method: :get, class: "btn btn-lg btn-purple splash-add-experience-btn" do
-        = "Click here for all submissions."
-
+      .splash-text-container.centered-text
+        = button_to experiences_path, method: :get, class: "btn btn-lg btn-purple splash-add-experience-btn" do
+          = "Click here for all submissions."
   .splash-text-container.centered-text
     = render 'layouts/footer'
