@@ -26,7 +26,7 @@
           #map
             %div#mapArea{ data: { latitude: @experience.latitude, longitude: @experience.longitude } }
         .col-xs-9.col-sm-6
-          = render @experience, partial: "experiences/experience" 
+          = render "experiences/experience_body", experience: @experience
           = "Submitted #{@experience.open_to_contact ? '' : 'anonymously '}on #{@experience.created_at.strftime("%B %d, %Y")}"
   .row.more-headroom
     .col-xs-12.col-sm-6.col-sm-offset-3
