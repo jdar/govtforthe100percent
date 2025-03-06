@@ -19,7 +19,9 @@ function initMap(x, y, z, image, draggable, callback){
   //init map
   var mapOptions = {
     zoom: parseInt(z, 10) || 3,
-    center: new google.maps.LatLng(x, y)
+    center: new google.maps.LatLng(x, y),
+    mapTypeControl: false, // Removes Satellite and Map toggle
+    streetViewControl: false,
   };
   if(y == '-98.5556199'){
     mapOptions.zoom = 4;
