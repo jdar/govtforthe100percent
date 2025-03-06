@@ -45,13 +45,13 @@
   = f.input :experience, 
     label: "My experience:", 
     as: :select, 
-    collection: [ "Termination of a federal program, contract, or grant that funded me or the organization I work for", "Indefinite withholding of money for a federal program, contract, or grant", "Termination of my job as a federal employee", "Investigation of me, my organization, or my federally-funded program or contract", "Loss of benefits provided directly for the federal government", "Loss of benefits provided through an entity or organization receiving federal funds", "Termination of my job because a White House policy has forbidden or denounced the law necessitating my position ", "Other" ], 
+    collection: [ "Termination of a federal program, contract, or grant that funded me or the organization I work for", "Indefinite withholding of money for a federal program, contract, or grant", "Termination of my job as a federal employee", "Investigation of me, my organization, or my federally-funded program or contract", "Loss of benefits provided directly by the federal government", "Loss of benefits provided through an entity or organization receiving federal funds", "Termination of my job because a White House policy has forbidden or denounced the law necessitating my position ", "Other" ], 
     prompt: "Select one", 
     required: true,
     input_html: { required: false }
   %br  
   = f.input :immediate_results,
-    label: "As an immediate result of the federal action:",
+    label: "As an immediate result of the federal action (Select all that apply):",
     as: :select, 
     collection: ["My organization had to terminate a program that it offered to beneficiaries", "My organization had to furlough or terminate one or more paid positions", "My organization had to close its doors (temporarily or permanently)", "I am no longer employed by my organization", "I had to accept  a different job within my organization", "I am no longer employed by the federal government", "I or my organization must respond to an audit or investigation", "I am no longer receiving benefits that I had been receiving on an ongoing basis", "Other",],
     input_html: { multiple: true, size: 9, required: false  },
@@ -67,7 +67,7 @@
     as: :text, 
     required: true, 
     input_html: { rows: 5, class: "span6",required: false, maxlength: 3500, id: "experience_details" }
-  %p#char-count 0/3500 characters
+  %p#char-count 0/3,500 characters; 800 character minimum
   %br
   %fieldset
     %legend{style: "font-size:20pt"} Open to Being Contacted:
@@ -158,7 +158,13 @@
     const maxChars = 3500;
 
     function updateCharCount() {
-      charCount.textContent = `${textarea.value.length}/${maxChars} characters`;
+      let statement = `${textarea.value.length.toLocaleString()}/${maxChars.toLocaleString()} characters`;
+      if(textarea.value.length > 0){
+      if(textarea.value.length < 800){
+        statement += `; ${(800 - textarea.value.length).toLocaleString()} more characters required.`;
+      }
+      }
+      charCount.textContent = statement; 
     }
 
     textarea.addEventListener("input", updateCharCount);
