@@ -14,9 +14,11 @@
   .row.more-headroom
     .col-xs-12.col-sm-6.col-sm-offset-3
       .splash-text-container.centered-text
-        %span If you have been displaced or economically affected...
+        %span.splash-add-experience-btn-description
+          If you have been displaced or economically affected...
         = button_to new_experience_path, method: :get, class: "btn btn-lg btn-purple splash-add-experience-btn" do
-          = t('.add-experience-button-label')
+          //= t('.add-experience-button-label')
+          = "People, don't forget"
           %i.fa.fa-plus-square-o.fa-2x
   - if @experience && @experience.latitude
     .row.even-more-headroom
