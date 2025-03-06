@@ -6,10 +6,19 @@
 %meta{:content => request.host, :name => "author"}/
 %meta{:content => "initial-scale=1, maximum-scale=1", :name => "viewport"}/
 
+//open-graph
+%meta{ property: "og:title", content: yield(:meta_title) || " Way back to Government" }
+- doc = capture do
+    ⚠️ Don’t let your experience be overlooked or erased. We cannot rebuild our democracy if it cannot be recalled. Your voice belongs in the record if you have lost benefits, been part of a program that has lost funded, or faced other abrupt changes in your life as a result of the new Trump administration. 
+    🔗 Speak up, share your story: waybacktogovt.org
+    📢 History only remembers what we record. #peopledontforget
+%meta{ property: "og:description", content: yield(:meta_description) || doc }
+%meta{ property: "og:image", content: yield(:meta_image) || asset_url('logo-100x100.png') }
+%meta{ property: "og:url", content: yield(:meta_url) || request.original_url }
+
 %script{:src => "https://maps.googleapis.com/maps/api/js?v=quarterly&libraries=places&key=AIzaSyDumes0Y6Uofc0ZMZkTFBKKUlFszMAeHKA"}
 = javascript_include_tag "https://www.google.com/recaptcha/api.js", :async => true, :defer => true
 = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
 = javascript_pack_tag "application", "data-turbolinks-track": "reload"
 = csrf_meta_tags
 = render 'layouts/piwik_tag'
-

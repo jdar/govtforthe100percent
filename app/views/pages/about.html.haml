@@ -37,6 +37,13 @@
 
     .centered-text
       %p Join the movement: #peopledontforget
+    .centered-text
+      %a{ href: "https://www.linkedin.com/sharing/share-offsite/?url=#{CGI.escape('https://waybacktogovt.org?linkedin')}", target: "_blank", rel: "noopener noreferrer" }
+        %i.fab.fa-linkedin
+        Share on LinkedIn
+      %a{ href: "https://www.facebook.com/sharer/sharer.php?u=#{CGI.escape('https://waybacktogovt.org/?facebook')}", target: "_blank", rel: "noopener noreferrer" }
+        %i.fab.fa-facebook
+        Share on Facebook
 
 //    %section
 //      %p= "[TODO: social action buttons that populate pre-written text]"
