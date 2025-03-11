@@ -1,4 +1,5 @@
 require "active_support/core_ext/integer/time"
+require 'ipaddr'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -11,7 +12,7 @@ Rails.application.configure do
   # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.
   # Rake tasks automatically ignore this option for performance.
-  config.eager_load = true
+  #config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local = false
@@ -50,14 +51,14 @@ Rails.application.configure do
   # config.assume_ssl = true
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
-  config.middleware.use Rack::Rewrite do
-    r301 %r{.*}, 'https://waybacktogovt.org$&', if: proc { |rack_env|
-      rack_env['HTTP_X_FORWARDED_PROTO'] != 'https'
-    }
-  end
-  config.middleware.insert_before(Rack::Runtime, Rack::SSL)
-  require 'ipaddr'
+  #config.force_ssl = true
+
+  #config.middleware.use Rack::Rewrite do
+  #  r301 %r{.*}, 'https://waybacktogovt.org$&', if: proc { |rack_env|
+  #    rack_env['HTTP_X_FORWARDED_PROTO'] != 'https'
+  #  }
+  #end
+  ##config.middleware.insert_before(Rack::Runtime, Rack::SSL)
 
   cloudflare_ips = %w[
     173.245.48.0/20
@@ -127,6 +128,8 @@ Rails.application.configure do
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
+
+  config.public_file_server.enabled = true
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [

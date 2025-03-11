@@ -26,11 +26,21 @@ rails runner "AdminUser.create!(email: 'admin@example.com', password: 'password'
 docker-compose run --rm --entrypoint /bin/sh web -c "cd /refugeexperiences && bundle exec rails runner \"AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')\""
 ```
 
+bash```
+#precompile:
+docker-compose run -rm assets
+```
+
+
+
 # RUN LOCALLY:
 
 ```
-docker-compose down && docker-compose up --build
+docker-compose down && docker-compose up db web --build
 ```
+
+
+
 
 # API
 

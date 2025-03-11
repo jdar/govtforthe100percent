@@ -24,3 +24,20 @@ services:
       - "3000:3000"
     depends_on:
       - db
+  assets:
+    environment:
+      RAILS_ENV: production
+      RAILS_GROUPS: assets
+      NODE_OPTIONS: --openssl-legacy-provider
+      SECRET_KEY_BASE: "dedb5939bbcf539bd95fe726bb88bc003fa7633d575178a1cf0aac481b4b27898a490bd6b76a4d9c8cdbc7a4c3ad0fa0dd390ac517eb74cabc2dd8d1c1637770"
+      DATABASE_URL: "postgres://dummy:dummy@127.0.0.1/dummy"
+    build: .
+    platform: linux/arm64
+    #entrypoint: [ setup/entry ]
+    command: bundle exec rails webpacker:compile assets:precompile
+    volumes:
+      - .:/refugeexperiences
+      - /refugeexperiences/node_modules
+      - bundle:/usr/local/bundle
+    depends_on:
+      - db

@@ -54,6 +54,7 @@ ruby
 ## zsh rake pugin
 .rake_tasks
 
+/public/assets
 /public/packs
 /public/packs-test
 /node_modules

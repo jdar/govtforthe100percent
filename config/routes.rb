@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       resources :docs, only: [:index]
     end
 
-    mount API::Base => '/api'
+    mount Api::Base => '/api'
 
     get '/contact', to: 'contacts#new'
     get "/*id" => 'pages#show', as: :page, format: false

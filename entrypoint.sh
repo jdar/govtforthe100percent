@@ -5,7 +5,7 @@ set -e
 rm -f /refugeexperiences/tmp/pids/server.pid
 
 # GOTCHA: webpacker.
-# Do NOT compile Webpack assets on heroku, due to memory constraints
+# Do NOT compile Webpack assets on heroku. Use precompilation.
 
 # Then execute the container’s main process (what's set as CMD).
 exec "$@"

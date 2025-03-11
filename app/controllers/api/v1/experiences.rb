@@ -1,4 +1,4 @@
-module API
+module Api
   module V1
     class Experiences < Grape::API
       PAGY_OPTIONS = { items_param: :per_page, items: 10, max_items: 100 }.freeze
