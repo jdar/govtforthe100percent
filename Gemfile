@@ -36,6 +36,8 @@ gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 gem 'webpacker', '~> 5'
 gem 'rack-attack'
+gem 'brakeman'
+gem 'bundler-audit'
 
 group :development, :test do
   gem 'better_errors', '~> 2.9.1'

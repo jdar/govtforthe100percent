@@ -62,13 +62,17 @@
   %strong Please describe the details of your experience:
   %br
   (Include the purpose of your job or program; the reason for the agency (in)action, cancellation or termination, if known; and the effect(s) of the status change on your organization, you, or others.)
+  = f.input :title, 
+    label: "", 
+    required: true, 
+    input_html: { maxlength: 200, minlength: 5, placeholder: "Title or phrase summarizing your experience", required: false }
+  %span{style: "margin: 0px 0px;"} 10 words or less
   = f.input :experience_details, 
     label: "", 
     as: :text, 
     required: true, 
-    input_html: { rows: 5, class: "span6",required: false, maxlength: 3500, id: "experience_details" }
+    input_html: { rows: 5, class: "span6", placeholder: "Experience", required: false, maxlength: 3500, id: "experience_details" }
   %p#char-count 0/3,500 characters; 800 character minimum
-  %br
   %fieldset
     %legend{style: "font-size:20pt"} Open to Being Contacted:
     %p I am open to being contacted privately if someone wants to discuss the details of my experience with me (e.g., media, congressman, legal team)

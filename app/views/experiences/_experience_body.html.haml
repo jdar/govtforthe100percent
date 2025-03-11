@@ -1,6 +1,7 @@
 - immediate_results = experience.immediate_results.reject{|el| el == ''}
 .itemInfo
-  .itemName= link_to_unless_current(experience.experience.titleize, experience)
+  .itemName= link_to_unless_current(experience.title, experience)
+  .itemStreet= experience.experience
   //.itemStreet="#{experience.city}, #{experience.state}, #{experience.zip_code}"
   .itemStreet= link_to(experience.federal_agency, experience.agency_website)
   - if immediate_results.any?

@@ -106,9 +106,14 @@ GEM
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
+    brakeman (7.0.0)
+      racc
     bugsnag (6.26.0)
       concurrent-ruby (~> 1.0)
     builder (3.2.4)
+    bundler-audit (0.9.2)
+      bundler (>= 1.2.0, < 3)
+      thor (~> 1.0)
     capybara (3.39.2)
       addressable
       matrix
@@ -485,7 +490,9 @@ DEPENDENCIES
   binding_of_caller
   bootsnap
   bootstrap-sass (>= 3.4.1)
+  brakeman
   bugsnag
+  bundler-audit
   capybara
   coffee-rails (~> 4.2)
   country_select

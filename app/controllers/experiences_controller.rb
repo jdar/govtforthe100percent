@@ -139,6 +139,7 @@ class ExperiencesController < ApplicationController
       :agency_website, 
       { immediate_results: [] },  # Allow array input
       :experience,
+      :title,
       :experience_details,
       :open_to_contact,
       :contact_name,
