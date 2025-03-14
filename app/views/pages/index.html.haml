@@ -11,20 +11,36 @@
   //    = render partial: "layouts/search", locals: {splash: true}
 
   .row.more-headroom
-    .col-xs-12.col-sm-6.col-sm-offset-3
+    .col-xs-18.col-sm-12 
+      //.col-sm-offset-3
       .splash-text-container.centered-text
-        %span.splash-add-experience-btn-description
-          If you have been displaced or economically affected...
-  .row.more-headroom
+        %span.splash-add-experience-btn-description{style: "text-align: justify;"}
+          //If you have been displaced or economically affected...
+          We are collecting the histories of all the people who have been displaced or economically affected by the actions of the 47th presidency since January 20th, 2025.
+          These stories will be collected in a map so that all of us can show each other how democracy has been working for the 100% across the United States of America.
+          %br
+      .splash-action-hint-container.centered-text.more-headroom
+        %span.splash-add-experience-btn-description{style: "text-align: justify;"}
+          Join the movement to preserve and record our democracy.
+
+  .row
     .col-xs-12.col-sm-6.col-sm-offset-3
       .splash-text-container.centered-text
         = button_to new_experience_path, method: :get, class: "btn btn-lg btn-purple splash-add-experience-btn" do
           //= t('.add-experience-button-label')
           = "People, don't forget"
           %i.fa.fa-plus-square-o.fa-2x
+  .row.more-headroom
+    .col-xs-12.col-sm-6.col-sm-offset-3
+      .splash-links-container
+        = link_to experiences_path, method: :get do
+          = "All Stories"
+        %span{style: 'color: rgb(0,0,0,0)'} |   |||||||||||||||||      |
+        = link_to "Map", experiences_path('view'=>"map","lat"=> 39.8097343,"long"=> -98.5556199, "zoom"=> 3)
+
+
   - if @experience && @experience.latitude
     .row.even-more-headroom
-      //.col-xs-6.col-sm-3.col-sm-offset-3
       .col-xs-12.col-sm-9.col-sm-offset-2{style: "background-color: white"}
         .col-xs-3.col-sm-4
           #map
@@ -32,10 +48,5 @@
         .col-xs-9.col-sm-6
           = render "experiences/experience_body", experience: @experience
           = "Submitted #{@experience.open_to_contact ? '' : 'anonymously '}on #{@experience.created_at.strftime("%B %d, %Y")}"
-  .row.more-headroom
-    .col-xs-12.col-sm-6.col-sm-offset-3
-      .splash-text-container.centered-text
-        = button_to experiences_path, method: :get, class: "btn btn-lg btn-purple splash-add-experience-btn" do
-          = "Click here for all submissions."
   .splash-text-container.centered-text
     = render 'layouts/footer'

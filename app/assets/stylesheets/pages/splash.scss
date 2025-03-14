@@ -6,9 +6,23 @@ body {
   height: 100%
 }
 
+/*
 .splash-header {
-  //background: image-url('dc_banner.jpg') no-repeat 50% 50% fixed;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
 }
+
+.splash-background {
+  margin-top: 50px;
+  position: relative;
+  z-index: 2;
+  //background-color: white;
+}
+*/
+
 
 .splash-background-DISABLED {
   background: image-url('rosegarden_with_bars.jpg') no-repeat 50% 50% fixed;
@@ -67,9 +81,33 @@ body {
   .splash-text-container {
     @include border-radius(5px);
     color: #11519B;
+    text-align: justify;
     //background: rgb(0, 0, 0);
     /* fallback color */
     //background: rgba(0, 0, 0, 0.6);
+  }
+
+  .splash-action-hint-container {
+    @include border-radius(5px);
+    color: #11519B;
+    margin-bottom: 10px;
+    //background: rgb(0, 0, 0);
+    /* fallback color */
+    //background: rgba(0, 0, 0, 0.6);
+  }
+
+  .splash-links-container {
+    @include border-radius(5px);
+    color: #11519B;
+
+    margin-bottom: 30px;
+    //background: rgb(0, 0, 0);
+    /* fallback color */
+    //background: rgba(0, 0, 0, 0.6);
+
+    a {
+      font-size: 20pt;
+    }
   }
 
   h1 {
@@ -89,8 +127,8 @@ body {
   }
 
   .splash-add-experience-btn-description {
-    font-size: 20pt;
-    margin-bottom: 30px;
+    font-size: 15pt;
+    margin-bottom: 10px;
   }
 
   .splash-add-experience-btn {
