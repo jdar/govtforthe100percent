@@ -214,12 +214,25 @@ export const Maps = {
     for (const [i, point] of points.entries()) {
       setPoint(point, i + 1);
     }
+  },
+  loadShowcaseMapWithPoints: (lat, long, zoom, markerImage) => {
+    initMap(lat, long, zoom, markerImage);
+
+    $.get('/experiences' + window.location.search, {}, (points) => {
+      for (const [i, point] of points.entries()) {
+        setPoint(point, i + 1);
+      }
+    }, 'json');
   }
 }
 
 $(function(){
   let mapArea = $('#mapArea');
   if(mapArea.length > 0) {
-    initMap(mapArea.data('latitude'), mapArea.data('longitude'), mapArea.data('zoom'), showMarkerImage);
+    if(mapArea.hasClass('showcase')){
+      Maps.loadShowcaseMapWithPoints(mapArea.data('latitude'), mapArea.data('longitude'), mapArea.data('zoom'), showMarkerImage);
+    } else {
+      initMap(mapArea.data('latitude'), mapArea.data('longitude'), mapArea.data('zoom'), showMarkerImage);
+    }
   }
 });

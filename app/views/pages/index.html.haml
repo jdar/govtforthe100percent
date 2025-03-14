@@ -44,7 +44,7 @@
       .col-xs-12.col-sm-9.col-sm-offset-2{style: "background-color: white"}
         .col-xs-3.col-sm-4
           #map
-            %div#mapArea{ data: { latitude: @experience.latitude, longitude: @experience.longitude } }
+            %div#mapArea.showcase{ data: { latitude: @experience.latitude, longitude: @experience.longitude } }
         .col-xs-9.col-sm-6
           = render "experiences/experience_body", experience: @experience
           = "Submitted #{@experience.open_to_contact ? '' : 'anonymously '}on #{@experience.created_at.strftime("%B %d, %Y")}"
