@@ -31,7 +31,7 @@ class Experience < ApplicationRecord
   )
 
   #validates :name, :street, :city, :state, presence: true
-  validates :federal_agency, :agency_website, :experience, :title, :experience_details, presence: true, string: true
+  validates :federal_agency, :experience, :title, :experience_details, presence: true, string: true
   validates :zip_code, inclusion: { in: AppConstants::ZIP_LOOKUP.keys, message: " was not a known zipcode in US, PR, or outlying islands." }
 
   #,

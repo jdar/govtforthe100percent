@@ -38,7 +38,7 @@
     required: true, 
     input_html: { class: 'agency-autocomplete', data: { autocomplete_url: agencies_path } }
   = f.input :agency_website, 
-    label: "Website of agency office or specific federal program featured in your experience:", 
+    label: "Website of agency office or specific federal program featured in your experience (optional):", 
     as: :url, 
     required: false, 
     input_html: { placeholder: "https://oig.usaid.gov/", pattern: "https?://.+", required: false }
