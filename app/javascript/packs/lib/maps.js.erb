@@ -10,6 +10,7 @@ const showMarkerImage = "<%= helpers.image_path('show-icon.png') %>";
 let map;
 let lastOpenedInfoWindow;
 let markers = [];
+let mc;
 
 function initMap(x, y, z, image, draggable, callback){
   // Default to center of the US if latitude or longitude is undefined
@@ -82,7 +83,7 @@ function placeMarker(lat, lng, content, number){
 
   // Create a label element for the number
   const markerLabel = document.createElement('div');
-  markerLabel.textContent = number.toString();
+  markerLabel.textContent = ''; //number.toString();
   markerLabel.style.position = 'absolute';
   markerLabel.style.top = '50%';
   markerLabel.style.left = '50%';
@@ -226,11 +227,11 @@ export const Maps = {
       setPoint(point, i + 1);
     }
     // Create the MarkerClusterer instance using the UMD global markerClusterer
-    const clusterer = new markerClusterer.MarkerClusterer(map, markers, {
-      imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerClusterer/m'
-    });
+    mc = new markerClusterer.MarkerClusterer({map, markers});
+    //  imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerClusterer/m'
+
     // When a cluster is clicked, aggregate the content from all markers in the cluster and display it in an info window.
-    google.maps.event.addListener(clusterer, 'clusterclick', function(cluster) {
+    google.maps.event.addListener(mc, 'clusterclick', function(cluster) {
       const markersInCluster = cluster.getMarkers();
       let aggregatedContent = '<ul>';
       markersInCluster.forEach(marker => {
@@ -239,7 +240,7 @@ export const Maps = {
       aggregatedContent += '</ul>';
       const infoWindow = new google.maps.InfoWindow({
         content: aggregatedContent,
-        position: cluster.getCenter()
+        position: mc.getCenter()
       });
       infoWindow.open(map);
     });
@@ -250,10 +251,9 @@ export const Maps = {
       for (const [i, point] of points.entries()) {
         setPoint(point, i + 1);
       }
-      const clusterer = new markerClusterer.MarkerClusterer(map, markers, {
-        imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerClusterer/m'
-      });
-      google.maps.event.addListener(clusterer, 'clusterclick', function(cluster) {
+      mc = new markerClusterer.MarkerClusterer({map, markers});
+        //imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerClusterer/m'
+      google.maps.event.addListener(mc, 'clusterclick', function(cluster) {
         const markersInCluster = cluster.getMarkers();
         let aggregatedContent = '<ul>';
         markersInCluster.forEach(marker => {
@@ -262,7 +262,7 @@ export const Maps = {
         aggregatedContent += '</ul>';
         const infoWindow = new google.maps.InfoWindow({
           content: aggregatedContent,
-          position: cluster.getCenter()
+          position: mc.getCenter()
         });
         infoWindow.open(map);
       });
