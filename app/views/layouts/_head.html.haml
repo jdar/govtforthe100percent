@@ -18,6 +18,7 @@
 
 %script{:src => "https://maps.googleapis.com/maps/api/js?v=quarterly&libraries=places&key=AIzaSyDumes0Y6Uofc0ZMZkTFBKKUlFszMAeHKA"}
 = javascript_include_tag "https://www.google.com/recaptcha/api.js", :async => true, :defer => true
+= javascript_include_tag "https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js", :async => true, :defer => true
 = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
 = javascript_pack_tag "application", "data-turbolinks-track": "reload"
 = csrf_meta_tags

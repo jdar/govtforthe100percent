@@ -4,22 +4,13 @@
       = render partial: 'experiences/experience_body', locals: { experience: @experience }
 
 .showPageContent
-  .row
-    .col-xs-12
-      .btn-group{role: "group"}
-        = link_to experience_path(experience: { downvote: true }),
-                    method: 'put' do
-          %button.btn.btn-lg.btn-danger
-            %i.fa.fa-thumbs-down
-            = "This affected me too"
-            //= t('.thumbs-down-button-label')
+  //.row.headroom
+  //  .col-xs-12
+  //    %p
+  //      %strong
+  //        = @experience.open_to_contact? ? "Open to be contacted" : "Not open to contact."
+  //    %p= link_to t('experience.edit.editlisting'), new_experience_path(id: @experience.id, experience_name: @experience.name, edit_id: @experience.edit_id)
   .row.headroom
-    .col-xs-12
-      %p
-        %strong
-          = @experience.open_to_contact? ? "Open to be contacted" : "Not open to contact."
-      %p= link_to t('experience.edit.editlisting'), new_experience_path(id: @experience.id, experience_name: @experience.name, edit_id: @experience.edit_id)
-  .row
     .col-xs-12
       #map
         %div#mapArea{ data: { latitude: @experience.latitude, longitude: @experience.longitude } }
@@ -27,3 +18,13 @@
   //.row
   //  .col-xs-12
   //    = render partial: 'layouts/disqus_tag', locals: { identifier: "experience-#{@experience.id}", title: @experience.name, url: request.original_url }
+  .row
+    .col-xs-12.col-sm-4
+      .btn-group{role: "group", style: "width: 600px !important;"}
+        = link_to experience_path(experience: { downvote: true }),
+                    method: 'put' do
+          %button.btn.btn-lg.btn.btn-lg.btn-purple.downvote-experience-btn
+            = "This affected me too"
+            //= t('.thumbs-down-button-label')
+
+
