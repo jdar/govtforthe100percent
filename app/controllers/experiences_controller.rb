@@ -56,10 +56,10 @@ class ExperiencesController < ApplicationController
 
     if @experience.errors.empty?
       if @experience.approved?
-        flash[:notice] = I18n.t('experience.flash.new', name: @experience.name)
+        flash[:notice] = I18n.t('experience.flash.new', name: @experience.title)
         redirect_to @experience
       else
-        flash[:notice] = I18n.t('experience.flash.edit', name: @experience.name)
+        flash[:notice] = I18n.t('experience.flash.edit', name: @experience.title)
         redirect_to experience_path(@experience.edit_id)
       end
     elsif @experience.errors.key?(:spam)
