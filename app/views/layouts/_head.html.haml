@@ -16,7 +16,7 @@
 %meta{ property: "og:image", content: yield(:meta_image) || asset_url('logo-100x100.png') }
 %meta{ property: "og:url", content: yield(:meta_url) || request.original_url }
 
-%script{:src => "https://maps.googleapis.com/maps/api/js?v=quarterly&libraries=places&key=AIzaSyDumes0Y6Uofc0ZMZkTFBKKUlFszMAeHKA"}
+%script{:src => "https://maps.googleapis.com/maps/api/js?v=quarterly&v=beta&libraries=marker,places&key=AIzaSyDumes0Y6Uofc0ZMZkTFBKKUlFszMAeHKA"}
 = javascript_include_tag "https://www.google.com/recaptcha/api.js", :async => true, :defer => true
 = javascript_include_tag "https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js", :async => true, :defer => true
 = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true

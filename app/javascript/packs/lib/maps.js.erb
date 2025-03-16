@@ -1,4 +1,4 @@
-// Constants
+//'8fb98b426566d683'
 const MARKER_WIDTH = 37;
 
 // Load image paths with erb templating
@@ -9,34 +9,40 @@ const showMarkerImage = "<%= helpers.image_path('show-icon.png') %>";
 
 let map;
 let lastOpenedInfoWindow;
+let markers = [];
 
 function initMap(x, y, z, image, draggable, callback){
+  // Default to center of the US if latitude or longitude is undefined
+  if (!x || !y) {
+    x = 39.8283;
+    y = -98.5795;
+    z = 4;
+  }
   image = typeof image !== 'undefined' ? image : currentLocationImage;
 
   // Draggable defaults to false
-  draggable =  draggable || false;
+  draggable = draggable || false;
 
-  //init map
+  // Init map (include mapId if you have one, e.g., mapId: 'YOUR_VALID_MAP_ID')
   var mapOptions = {
     zoom: parseInt(z, 10) || 3,
     center: new google.maps.LatLng(x, y),
     mapTypeControl: false, // Removes Satellite and Map toggle
     streetViewControl: false,
+    mapId: '8fb98b426566d683',
   };
   if(y == '-98.5556199'){
     mapOptions.zoom = 4;
   }
 
-  map = new google.maps.Map(document.getElementById('mapArea'),
-      mapOptions);
+  map = new google.maps.Map(document.getElementById('mapArea'), mapOptions);
 
   google.maps.event.addListenerOnce(map, 'idle', function() {
     $('#mapArea').addClass('loaded');
   });
 
-  //set marker at current location
+  // Set marker at current location using a standard marker
   var myLatLng = new google.maps.LatLng(x, y);
-
   var currentLocation = new google.maps.Marker({
     title: "Current Location",
     position: myLatLng,
@@ -49,66 +55,84 @@ function initMap(x, y, z, image, draggable, callback){
 }
 
 function getPoint(string, callback){
-    // Google Geocoding API
-    var url = "http://maps.googleapis.com/maps/api/geocode/json?address=" + string.replace(" ", "+");
-    $.get( url, function( data ) {
-      if(data && data.results){
-        if(data.results.length > 0){
-          callback(data.results[0].geometry.location);
-        }
+  // Google Geocoding API
+  var url = "http://maps.googleapis.com/maps/api/geocode/json?address=" + string.replace(" ", "+");
+  $.get(url, function(data) {
+    if(data && data.results){
+      if(data.results.length > 0){
+        callback(data.results[0].geometry.location);
       }
-    });
+    }
+  });
 }
 
 function placeMarker(lat, lng, content, number){
-  // Create Icon
-  var circleIcon = {
-    url: circleMarkerImage,
-    size: new google.maps.Size(MARKER_WIDTH, MARKER_WIDTH),
-    anchor: new google.maps.Point(MARKER_WIDTH / 2, MARKER_WIDTH / 2)
-  };
+  // Create container for the marker element
+  const markerDiv = document.createElement('div');
+  markerDiv.style.position = 'relative';
+  markerDiv.style.width = MARKER_WIDTH + 'px';
+  markerDiv.style.height = MARKER_WIDTH + 'px';
 
-  // Create label
-  var markerLabel = {
-    color: 'white',
-    text: number.toString()
-  };
+  // Create an image element for the marker icon
+  const markerImg = document.createElement('img');
+  markerImg.src = circleMarkerImage;
+  markerImg.style.width = '100%';
+  markerImg.style.height = '100%';
+  markerDiv.appendChild(markerImg);
 
-  // Create marker
-  var marker = new google.maps.Marker({
+  // Create a label element for the number
+  const markerLabel = document.createElement('div');
+  markerLabel.textContent = number.toString();
+  markerLabel.style.position = 'absolute';
+  markerLabel.style.top = '50%';
+  markerLabel.style.left = '50%';
+  markerLabel.style.transform = 'translate(-50%, -50%)';
+  markerLabel.style.color = 'white';
+  markerLabel.style.fontWeight = 'bold';
+  markerDiv.appendChild(markerLabel);
+
+  // Create the advanced marker using AdvancedMarkerElement.
+  // Ensure your API script includes v=beta and libraries=marker.
+  const advancedMarker = new google.maps.marker.AdvancedMarkerElement({
+    map: map,
     position: {lat: lat, lng: lng},
-    icon: circleIcon,
-    label: markerLabel,
-    map: map
+    content: markerDiv
   });
 
-  // Create info window
-  var infoWindow = new google.maps.InfoWindow({
-    content: content
-  });
-
-  marker.addListener('click', function() {
+  // Register a click event on the AdvancedMarkerElement instance for improved accessibility.
+  google.maps.event.addListener(advancedMarker, 'click', function() {
     closeLastOpenedInfoWindow();
-    infoWindow.open(map, marker);
+    const infoWindow = new google.maps.InfoWindow({
+      content: content,
+      position: advancedMarker.position
+    });
+    infoWindow.open(map);
     lastOpenedInfoWindow = infoWindow;
   });
 
-  google.maps.event.addListener(map, 'click', function(event) {
-    infoWindow.close();
+  // Optionally, you can still listen on map clicks to close open info windows.
+  map.addListener('click', function() {
+    if(lastOpenedInfoWindow) {
+      lastOpenedInfoWindow.close();
+    }
   });
+
+  // Store marker content for clustering purposes.
+  advancedMarker.myContent = content;
+
+  markers.push(advancedMarker);
 }
 
 function closeLastOpenedInfoWindow() {
-    if (lastOpenedInfoWindow) {
-        lastOpenedInfoWindow.close();
-    }
+  if (lastOpenedInfoWindow) {
+    lastOpenedInfoWindow.close();
+  }
 }
 
 function generateContent(data){
   var item = $(".listItem[data-id=" + data.id + "]");
   var container = $("<div class='markerPopup' />");
   container.append(item.clone());
-
   return container[0].outerHTML;
 }
 
@@ -129,24 +153,20 @@ function searchLocation(search){
     searchCurrent();
     return;
   }
-
   if(search == ""){
     handleSearchResults(37.7577, -122.4376);
     return;
   }
-
   var geocoder = new google.maps.Geocoder();
   geocoder.geocode({
     'address': search
   }, function (results, status) {
-    // if match
     if (status == google.maps.GeocoderStatus.OK) {
       handleSearchResults(results[0].geometry.location.lat(), results[0].geometry.location.lng());
     } else {
       emitError("Geocoder failed due to: " + status);
     }
   });
-
 }
 
 function handleSearchResults(lat, lng){
@@ -157,21 +177,14 @@ function handleSearchResults(lat, lng){
 
 function searchCurrent() {
   var button = $('.currentLocationButton');
-  // if we are already searching, don't bother searching again
   if (button.is('currentLocationButtonLocating')) {
     return false;
   }
-
   button.addClass('currentLocationButtonLocating');
-
-  // We get a promise back from this API
   var location = locator.get();
-
-  // always turn off our "working..." class when we've found it
   location.always(function() {
     button.removeClass('currentLocationButtonLocating');
   });
-
   location.then(function gotCoordinates(coords) {
     $("#search").val(currentLocationText);
     handleSearchResults(coords.latitude, coords.longitude);
@@ -192,7 +205,6 @@ function guessPosition (coords, callback) {
   geocoder.geocode({
     'location': new google.maps.LatLng(coords.latitude, coords.longitude)
   }, function (results, status) {
-    // if match
     if (status == google.maps.GeocoderStatus.OK) {
       callback(results);
     } else {
@@ -210,18 +222,50 @@ export const Maps = {
   },
   loadMapWithPoints: (lat, long, zoom, points) => {
     initMap(lat, long, zoom);
-
     for (const [i, point] of points.entries()) {
       setPoint(point, i + 1);
     }
+    // Create the MarkerClusterer instance using the UMD global markerClusterer
+    const clusterer = new markerClusterer.MarkerClusterer(map, markers, {
+      imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerClusterer/m'
+    });
+    // When a cluster is clicked, aggregate the content from all markers in the cluster and display it in an info window.
+    google.maps.event.addListener(clusterer, 'clusterclick', function(cluster) {
+      const markersInCluster = cluster.getMarkers();
+      let aggregatedContent = '<ul>';
+      markersInCluster.forEach(marker => {
+        aggregatedContent += `<li>${marker.myContent}</li>`;
+      });
+      aggregatedContent += '</ul>';
+      const infoWindow = new google.maps.InfoWindow({
+        content: aggregatedContent,
+        position: cluster.getCenter()
+      });
+      infoWindow.open(map);
+    });
   },
   loadShowcaseMapWithPoints: (lat, long, zoom, markerImage) => {
     initMap(lat, long, zoom, markerImage);
-
     $.get('/experiences' + window.location.search, {}, (points) => {
       for (const [i, point] of points.entries()) {
         setPoint(point, i + 1);
       }
+      const clusterer = new markerClusterer.MarkerClusterer(map, markers, {
+        imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerClusterer/m'
+      });
+      google.maps.event.addListener(clusterer, 'clusterclick', function(cluster) {
+        const markersInCluster = cluster.getMarkers();
+        let aggregatedContent = '<ul>';
+        markersInCluster.forEach(marker => {
+          aggregatedContent += `<li>${marker.myContent}</li>`;
+        });
+        aggregatedContent += '</ul>';
+        const infoWindow = new google.maps.InfoWindow({
+          content: aggregatedContent,
+          position: cluster.getCenter()
+        });
+        infoWindow.open(map);
+      });
     }, 'json');
   }
 }
